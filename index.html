@@ -21,226 +21,317 @@
             color: white;
         }
         .tab-link.active {
-            border-color: #4f46e5;
-            color: #4f46e5;
-            background-color: #eef2ff;
+            border-color: #6366f1;
+            color: #e0e7ff;
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: #1e1b4b;
             border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #312e81;
             border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #4338ca;
         }
         .no-data-message {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
-            color: #6b7280;
+            color: #9ca3af;
             font-size: 0.875rem;
         }
+        .prose { max-width: none; color: #d1d5db; }
+        .prose h3 { font-size: 1.25rem; margin-bottom: 1rem; color: #eef2ff; }
+        .prose h4 { font-size: 1.125rem; margin-bottom: 0.75rem; color: #e0e7ff; }
+        .prose p { margin-bottom: 1rem; }
+        .prose ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose strong { font-weight: 600; color: #c7d2fe; }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-indigo-900 text-gray-200">
 
-    <!-- ヘッダーとナビゲーション -->
-    <header class="bg-white shadow-md sticky top-0 z-20">
-        <div class="container mx-auto px-4">
-            <nav class="flex items-center justify-between h-16">
-                <div id="display-store-name" class="text-xl font-bold text-indigo-600">VINTAGE ANALYZER</div>
-                <div class="flex space-x-2">
-                    <a href="#" id="nav-home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200">Home</a>
-                    <a href="#" id="nav-analytic" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200">Analytic</a>
-                    <a href="#" id="nav-import" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200">Import</a>
-                    <a href="#" id="nav-setting" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200">Setting</a>
+    <!-- ログイン画面 -->
+    <div id="login-page" class="min-h-screen flex items-center justify-center bg-indigo-900 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
+                    VINTAGE ANALYZER
+                </h2>
+            </div>
+            <div class="mt-8 space-y-6 bg-indigo-800 p-8 shadow-2xl rounded-2xl">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="user-id-input" class="sr-only">ユーザーID</label>
+                        <input id="user-id-input" name="userid" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-3 bg-indigo-700 border border-indigo-600 placeholder-gray-400 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="ユーザーID">
+                    </div>
+                    <div>
+                        <label for="password-login-input" class="sr-only">パスワード</label>
+                        <input id="password-login-input" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-3 bg-indigo-700 border border-indigo-600 placeholder-gray-400 text-white rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="パスワード">
+                    </div>
                 </div>
-            </nav>
-        </div>
-    </header>
 
-    <main class="container mx-auto p-4 md:p-8">
-        <!-- Home ページ -->
-        <div id="home-page" class="page">
-            <div class="bg-white p-8 rounded-lg shadow-md text-center">
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">ようこそ！</h1>
-                <p class="text-lg text-gray-600 mb-6">このダッシュボードは、古着店の売上データを分析するためのツールです。<br>「Import」ページからCSVファイルをアップロードして、分析を始めましょう。</p>
-                <button id="go-to-import-btn" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                    データをインポートする
-                </button>
+                <p id="login-error-message" class="text-red-400 text-sm text-center h-4"></p>
+
+                <div>
+                    <button id="login-btn" type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-800 focus:ring-white">
+                        ログイン
+                    </button>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Import ページ -->
-        <div id="import-page" class="page hidden">
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- 売上データアップロード -->
-                <div id="sales-upload-container">
-                    <h2 class="text-xl font-bold mb-4 text-gray-800">売上データ</h2>
-                    <div id="sales-drop-zone" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer bg-white hover:bg-gray-50 transition-colors">
-                        <div class="flex flex-col items-center justify-center">
-                            <svg class="w-12 h-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 17.25z" /></svg>
-                            <p class="text-gray-700 font-semibold">売上CSVをドラッグ＆ドロップ</p>
-                            <p class="text-gray-500 text-sm mt-1">またはクリックして選択</p>
-                            <input type="file" id="sales-file-input" class="hidden" accept=".csv" multiple>
-                        </div>
-                    </div>
-                    <div id="sales-file-info" class="mt-2 text-center text-sm text-gray-600"></div>
-                    <div class="mt-4 text-left bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <h3 class="font-semibold text-gray-700 text-sm">売上CSVの形式</h3>
-                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2 space-y-1">
-                            <li><strong>C列:</strong> 日時 (例: 2024/07/01 13:30)</li>
-                            <li><strong>E列:</strong> カテゴリコード</li>
-                            <li><strong>G列:</strong> 単価 (数字のみ)</li>
-                        </ul>
-                    </div>
+    <!-- メインアプリケーションコンテナ -->
+    <div id="app-container" class="hidden">
+        <div class="flex h-screen bg-indigo-900">
+            <!-- サイドバー -->
+            <aside class="w-64 bg-indigo-800 shadow-lg flex-shrink-0 flex flex-col">
+                <div class="p-6 text-center">
+                    <div id="display-store-name" class="text-xl font-bold text-white">VINTAGE ANALYZER</div>
                 </div>
-                <!-- 来店客数データアップロード -->
-                <div id="visitor-upload-container">
-                    <h2 class="text-xl font-bold mb-4 text-gray-800">来店客数データ</h2>
-                    <div id="visitor-drop-zone" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer bg-white hover:bg-gray-50 transition-colors">
-                        <div class="flex flex-col items-center justify-center">
-                             <svg class="w-12 h-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.375 3.375 0 0110.5 12h3c1.414 0 2.695.606 3.586 1.595M15.11 5.46A9.037 9.037 0 0112 3c-1.605 0-3.097.49-4.388 1.342M12 21a9.037 9.037 0 01-4.388-1.342" /></svg>
-                            <p class="text-gray-700 font-semibold">来店客数CSVをドラッグ＆ドロップ</p>
-                            <p class="text-gray-500 text-sm mt-1">またはクリックして選択</p>
-                            <input type="file" id="visitor-file-input" class="hidden" accept=".csv" multiple>
-                        </div>
-                    </div>
-                    <div id="visitor-file-info" class="mt-2 text-center text-sm text-gray-600"></div>
-                     <div class="mt-4 text-left bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <h3 class="font-semibold text-gray-700 text-sm">来店客数CSVの形式</h3>
-                        <ul class="list-disc list-inside text-sm text-gray-600 mt-2 space-y-1">
-                            <li><strong>C列:</strong> 集計年月日</li>
-                            <li><strong>I列:</strong> 来店客数</li>
-                        </ul>
-                    </div>
-                </div>
-             </div>
-             <div id="import-status" class="mt-6 p-4 rounded-lg bg-white shadow text-center font-semibold"></div>
-        </div>
-
-        <!-- Analytic ページ -->
-        <div id="analytic-page" class="page hidden">
-            <!-- サマリー -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">総売上</h3><p id="total-revenue" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">¥0</p></div>
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">販売点数</h3><p id="total-items" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">0</p></div>
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">購買客数</h3><p id="customer-count" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">0</p></div>
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">来店客数</h3><p id="visitor-count" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">0</p></div>
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">購買転換率</h3><p id="conversion-rate" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">0%</p></div>
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">平均顧客単価</h3><p id="avg-customer-spend" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">¥0</p></div>
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">平均商品単価</h3><p id="average-price" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">¥0</p></div>
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200"><h3 class="text-gray-500 text-sm font-medium">平均購入点数</h3><p id="avg-items-per-customer" class="text-2xl lg:text-3xl font-bold text-indigo-600 mt-1">0</p></div>
-            </div>
-
-            <!-- タブナビゲーション -->
-            <div class="mb-4 border-b border-gray-200 sticky top-16 bg-gray-100 z-10">
-                <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                    <a href="#" id="tab-daily" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">日次分析</a>
-                    <a href="#" id="tab-weekly" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">週次分析</a>
-                    <a href="#" id="tab-monthly" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">月次分析</a>
+                <nav class="mt-8 flex-1 flex flex-col space-y-2 px-4">
+                    <a href="#" id="nav-analytic" class="nav-link px-4 py-2.5 rounded-md text-sm font-medium text-indigo-200 hover:bg-indigo-700 hover:text-white flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span>Analytic</span>
+                    </a>
+                    <a href="#" id="nav-import" class="nav-link px-4 py-2.5 rounded-md text-sm font-medium text-indigo-200 hover:bg-indigo-700 hover:text-white flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        </svg>
+                        <span>Import</span>
+                    </a>
+                    <a href="#" id="nav-ai-report" class="nav-link px-4 py-2.5 rounded-md text-sm font-medium text-indigo-200 hover:bg-indigo-700 hover:text-white flex items-center space-x-3">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>AI Report</span>
+                    </a>
+                    <a href="#" id="nav-setting" class="nav-link px-4 py-2.5 rounded-md text-sm font-medium text-indigo-200 hover:bg-indigo-700 hover:text-white flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>Setting</span>
+                    </a>
                 </nav>
-            </div>
+            </aside>
 
-            <!-- 日次分析タブ -->
-            <div id="daily-tab-content" class="tab-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">日別 売上</h3><div class="chart-container"><canvas id="daily-chart"></canvas></div></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">日別 購買客数</h3><div class="chart-container"><canvas id="daily-customer-count-chart"></canvas></div></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">日別 来店客数</h3><div class="chart-container"><canvas id="daily-visitor-count-chart"></canvas></div></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">日別 購買転換率</h3><div class="chart-container"><canvas id="daily-conversion-chart"></canvas></div></div>
-                </div>
-                 <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <h3 class="font-semibold text-lg mb-4">日別 カテゴリ購買数ランキング (TOP 3)</h3>
-                    <div id="daily-category-rankings" class="space-y-6 overflow-y-auto max-h-96 custom-scrollbar pr-2"></div>
-                </div>
-            </div>
-
-            <!-- 週次分析タブ -->
-            <div id="weekly-tab-content" class="tab-content hidden">
-                 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">週別 売上</h3><div class="chart-container"><canvas id="weekly-chart"></canvas></div></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">週別 購買客数・来店客数</h3><div class="chart-container"><canvas id="weekly-visitors-chart"></canvas></div></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">週別 購買転換率</h3><div class="chart-container"><canvas id="weekly-conversion-chart"></canvas></div></div>
-                </div>
-                 <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-6">
-                    <h3 class="font-semibold text-lg mb-4">週別 カテゴリ購買数ランキング (TOP 5)</h3>
-                    <div id="weekly-category-rankings" class="space-y-6 overflow-y-auto max-h-96 custom-scrollbar pr-2"></div>
-                </div>
-            </div>
-
-            <!-- 月次分析タブ -->
-            <div id="monthly-tab-content" class="tab-content hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">月別 売上</h3><div class="chart-container"><canvas id="monthly-chart"></canvas></div></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">月別 購買客数・来店客数</h3><div class="chart-container"><canvas id="monthly-visitors-chart"></canvas></div></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200"><h3 class="font-semibold text-lg mb-4">月別 購買転換率</h3><div class="chart-container"><canvas id="monthly-conversion-chart"></canvas></div></div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-6">
-                    <h3 class="font-semibold text-lg mb-4">月別 カテゴリ購買数ランキング (TOP 5)</h3>
-                    <div id="monthly-category-rankings" class="space-y-6 overflow-y-auto max-h-96 custom-scrollbar pr-2"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Setting ページ -->
-        <div id="setting-page" class="page hidden">
-            <div class="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto">
-                <h1 class="text-2xl font-bold text-gray-900 mb-6">設定</h1>
-                <div class="space-y-6">
-                    <div>
-                        <label for="store-name-input" class="block text-sm font-medium text-gray-700">店舗名</label>
-                        <input type="text" id="store-name-input" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <!-- メインコンテンツ -->
+            <div class="flex-grow flex flex-col overflow-hidden">
+                <main class="flex-grow p-4 md:p-8 overflow-y-auto custom-scrollbar">
+                    <!-- Import ページ -->
+                    <div id="import-page" class="page hidden">
+                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
+                                <h2 class="text-xl font-bold mb-4 text-white">新規データ追加</h2>
+                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- 売上データアップロード -->
+                                    <div id="sales-upload-container">
+                                        <h3 class="text-lg font-semibold mb-2 text-indigo-200">売上データ</h3>
+                                        <div id="sales-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors">
+                                            <div class="flex flex-col items-center justify-center">
+                                                <svg class="w-10 h-10 text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 17.25z" /></svg>
+                                                <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
+                                                <input type="file" id="sales-file-input" class="hidden" accept=".csv" multiple>
+                                            </div>
+                                        </div>
+                                        <div id="sales-file-info" class="mt-2 text-center text-xs text-indigo-300"></div>
+                                    </div>
+                                    <!-- 来店客数データアップロード -->
+                                    <div id="visitor-upload-container">
+                                        <h3 class="text-lg font-semibold mb-2 text-indigo-200">来店客数データ</h3>
+                                        <div id="visitor-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-white hover:bg-gray-50 transition-colors">
+                                            <div class="flex flex-col items-center justify-center">
+                                                 <svg class="w-10 h-10 text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.375 3.375 0 0110.5 12h3c1.414 0 2.695.606 3.586 1.595M15.11 5.46A9.037 9.037 0 0112 3c-1.605 0-3.097.49-4.388 1.342M12 21a9.037 9.037 0 01-4.388-1.342" /></svg>
+                                                <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
+                                                <input type="file" id="visitor-file-input" class="hidden" accept=".csv" multiple>
+                                            </div>
+                                        </div>
+                                        <div id="visitor-file-info" class="mt-2 text-center text-xs text-indigo-300"></div>
+                                    </div>
+                                 </div>
+                                 <button id="upload-btn" class="mt-4 w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-500 transition-colors shadow-lg">アップロード</button>
+                            </div>
+                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
+                                <h2 class="text-xl font-bold mb-4 text-white">保存済みデータ</h2>
+                                <div id="saved-files-list" class="bg-indigo-900/50 p-4 rounded-lg shadow-inner h-64 overflow-y-auto custom-scrollbar">
+                                   <p class="text-center text-indigo-300">保存されたデータはありません。</p>
+                                </div>
+                            </div>
+                         </div>
+                         <div id="import-status" class="mt-6 p-4 rounded-lg bg-indigo-800 shadow-lg text-center font-semibold h-12 flex items-center justify-center"></div>
                     </div>
-                    <div>
-                        <label for="address-input" class="block text-sm font-medium text-gray-700">住所</label>
-                        <input type="text" id="address-input" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-                    <div>
-                        <label for="tsubo-input" class="block text-sm font-medium text-gray-700">坪数</label>
-                        <input type="number" id="tsubo-input" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="例: 15">
-                    </div>
-                    <div>
-                        <label for="password-input" class="block text-sm font-medium text-gray-700">パスワード</label>
-                        <div class="relative mt-1">
-                            <input type="password" id="password-input" class="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pr-10">
-                            <div id="toggle-password-visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
-                                <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                                 <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                                </svg>
+
+                    <!-- Analytic ページ -->
+                    <div id="analytic-page" class="page">
+                        <!-- サマリー -->
+                        <div class="mb-8">
+                            <h2 id="summary-title" class="text-2xl font-bold text-white mb-4">全体サマリー</h2>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">総売上</h3><div><p id="total-revenue" class="text-lg lg:text-xl font-bold text-white mt-1">¥0</p><div id="total-revenue-change" class="text-xs mt-1 h-4"></div></div></div>
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">販売点数</h3><div><p id="total-items" class="text-lg lg:text-xl font-bold text-white mt-1">0</p><div id="total-items-change" class="text-xs mt-1 h-4"></div></div></div>
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">購買客数</h3><div><p id="customer-count" class="text-lg lg:text-xl font-bold text-white mt-1">0</p><div id="customer-count-change" class="text-xs mt-1 h-4"></div></div></div>
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">来店客数</h3><div><p id="visitor-count" class="text-lg lg:text-xl font-bold text-white mt-1">0</p><div id="visitor-count-change" class="text-xs mt-1 h-4"></div></div></div>
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">購買率</h3><div><p id="conversion-rate" class="text-lg lg:text-xl font-bold text-white mt-1">0%</p><div id="conversion-rate-change" class="text-xs mt-1 h-4"></div></div></div>
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">平均顧客単価</h3><div><p id="avg-customer-spend" class="text-lg lg:text-xl font-bold text-white mt-1">¥0</p><div id="avg-customer-spend-change" class="text-xs mt-1 h-4"></div></div></div>
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">平均商品単価</h3><div><p id="average-price" class="text-lg lg:text-xl font-bold text-white mt-1">¥0</p><div id="average-price-change" class="text-xs mt-1 h-4"></div></div></div>
+                                <div class="bg-indigo-800 p-5 rounded-2xl shadow-lg"><h3 class="text-indigo-300 text-xs font-medium">平均購入点数</h3><div><p id="avg-items-per-customer" class="text-lg lg:text-xl font-bold text-white mt-1">0</p><div id="avg-items-per-customer-change" class="text-xs mt-1 h-4"></div></div></div>
+                            </div>
+                        </div>
+
+                        <!-- タブナビゲーション -->
+                        <div class="mb-4 border-b border-indigo-700 sticky top-0 bg-indigo-900 z-10">
+                            <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                                <a href="#" id="tab-daily" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-indigo-300 hover:text-white hover:border-indigo-400">日次分析</a>
+                                <a href="#" id="tab-weekly" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-indigo-300 hover:text-white hover:border-indigo-400">週次分析</a>
+                                <a href="#" id="tab-monthly" class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-indigo-300 hover:text-white hover:border-indigo-400">月次分析</a>
+                            </nav>
+                        </div>
+
+                        <!-- 日次分析タブ -->
+                        <div id="daily-tab-content" class="tab-content">
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">日別 売上</h3><div class="chart-container"><canvas id="daily-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">日別 購買数</h3><div class="chart-container"><canvas id="daily-purchase-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">日別 購買客数</h3><div class="chart-container"><canvas id="daily-customer-count-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">日別 来店客数</h3><div class="chart-container"><canvas id="daily-visitor-count-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">日別 購買率</h3><div class="chart-container"><canvas id="daily-conversion-chart"></canvas></div></div>
+                            </div>
+                             <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
+                                <h3 class="font-semibold text-lg mb-4 text-white">日別 カテゴリ購買数ランキング</h3>
+                                <div id="daily-category-rankings" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                            </div>
+                        </div>
+
+                        <!-- 週次分析タブ -->
+                        <div id="weekly-tab-content" class="tab-content hidden">
+                             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 売上</h3><div class="chart-container"><canvas id="weekly-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 購買数</h3><div class="chart-container"><canvas id="weekly-purchase-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 購買客数</h3><div class="chart-container"><canvas id="weekly-customer-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 来店客数</h3><div class="chart-container"><canvas id="weekly-visitor-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 購買率</h3><div class="chart-container"><canvas id="weekly-conversion-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 平均買上点数</h3><div class="chart-container"><canvas id="weekly-avg-items-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 平均商品単価</h3><div class="chart-container"><canvas id="weekly-avg-price-chart"></canvas></div></div>
+                            </div>
+                             <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg mt-6">
+                                <h3 class="font-semibold text-lg mb-4 text-white">週別 カテゴリ購買数ランキング</h3>
+                                <div id="weekly-category-rankings" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                            </div>
+                        </div>
+
+                        <!-- 月次分析タブ -->
+                        <div id="monthly-tab-content" class="tab-content hidden">
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">月別 売上</h3><div class="chart-container"><canvas id="monthly-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">月別 購買数</h3><div class="chart-container"><canvas id="monthly-purchase-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">月別 購買客数</h3><div class="chart-container"><canvas id="monthly-customer-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">月別 来店客数</h3><div class="chart-container"><canvas id="monthly-visitor-chart"></canvas></div></div>
+                                <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">月別 購買率</h3><div class="chart-container"><canvas id="monthly-conversion-chart"></canvas></div></div>
+                            </div>
+                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg mt-6">
+                                <h3 class="font-semibold text-lg mb-4 text-white">月別 カテゴリ購買数ランキング</h3>
+                                <div id="monthly-category-rankings" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"></div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button id="save-settings-btn" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            保存する
-                        </button>
+
+                    <!-- AI Report ページ -->
+                    <div id="ai-report-page" class="page hidden">
+                        <div class="bg-indigo-800 p-8 rounded-2xl shadow-lg">
+                            <div class="flex justify-between items-center mb-6">
+                                <h1 class="text-2xl font-bold text-white">AI分析レポート</h1>
+                                <button id="generate-report-btn" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-500 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                    レポート生成
+                                </button>
+                            </div>
+                            <div id="report-container" class="prose mt-6 border-t border-indigo-700 pt-6">
+                                <p class="text-indigo-300">「レポート生成」ボタンをクリックして、直近3カ月の分析レポートを作成します。</p>
+                            </div>
+                             <div id="loading-indicator" class="hidden text-center py-10">
+                                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-400 mx-auto"></div>
+                                <p class="mt-4 text-indigo-300">AIがレポートを生成中です。しばらくお待ちください...</p>
+                            </div>
+                        </div>
                     </div>
-                    <p id="settings-success-message" class="text-green-600 text-sm text-center"></p>
-                </div>
+
+
+                    <!-- Setting ページ -->
+                    <div id="setting-page" class="page hidden">
+                        <div class="bg-indigo-800 p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
+                            <h1 class="text-2xl font-bold text-white mb-6">設定</h1>
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="store-name-input" class="block text-sm font-medium text-indigo-200">店舗名</label>
+                                    <input type="text" id="store-name-input" class="mt-1 block w-full px-3 py-2 bg-indigo-700 border border-indigo-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white">
+                                </div>
+                                <div>
+                                    <label for="address-input" class="block text-sm font-medium text-indigo-200">住所</label>
+                                    <input type="text" id="address-input" class="mt-1 block w-full px-3 py-2 bg-indigo-700 border border-indigo-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white">
+                                </div>
+                                <div>
+                                    <label for="tsubo-input" class="block text-sm font-medium text-indigo-200">坪数</label>
+                                    <input type="number" id="tsubo-input" class="mt-1 block w-full px-3 py-2 bg-indigo-700 border border-indigo-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white" placeholder="例: 15">
+                                </div>
+                                <div>
+                                    <label for="password-input" class="block text-sm font-medium text-indigo-200">パスワード</label>
+                                    <div class="relative mt-1">
+                                        <input type="password" id="password-input" class="block w-full px-3 py-2 bg-indigo-700 border border-indigo-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white pr-10">
+                                        <div id="toggle-password-visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                                            <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                             <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button id="save-settings-btn" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        保存する
+                                    </button>
+                                </div>
+                                <p id="settings-success-message" class="text-green-400 text-sm text-center"></p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
         </div>
-    </main>
+    </div>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, addDoc, collection, query, getDocs, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
         // DOM Elements
+        const loginPage = document.getElementById('login-page');
+        const appContainer = document.getElementById('app-container');
+        const userIdInput = document.getElementById('user-id-input');
+        const passwordLoginInput = document.getElementById('password-login-input');
+        const loginBtn = document.getElementById('login-btn');
+        const loginErrorMessage = document.getElementById('login-error-message');
+
         const salesDropZone = document.getElementById('sales-drop-zone');
         const salesFileInput = document.getElementById('sales-file-input');
         const salesFileInfo = document.getElementById('sales-file-info');
         const visitorDropZone = document.getElementById('visitor-drop-zone');
         const visitorFileInput = document.getElementById('visitor-file-input');
         const visitorFileInfo = document.getElementById('visitor-file-info');
+        const uploadBtn = document.getElementById('upload-btn');
+        const savedFilesList = document.getElementById('saved-files-list');
         const importStatus = document.getElementById('import-status');
         
         const storeNameDisplay = document.getElementById('display-store-name');
@@ -253,11 +344,26 @@
         const togglePasswordVisibility = document.getElementById('toggle-password-visibility');
         const eyeIcon = document.getElementById('eye-icon');
         const eyeSlashIcon = document.getElementById('eye-slash-icon');
+        const generateReportBtn = document.getElementById('generate-report-btn');
+        const reportContainer = document.getElementById('report-container');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const summaryTitle = document.getElementById('summary-title');
 
         let chartInstances = {};
         let salesData = [];
         let visitorData = [];
         let analysisResultCache = null;
+        let currentSalesFiles = [];
+        let currentVisitorFiles = [];
+
+        let db, auth, userId;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // --- ログイン情報 ---
+        const users = {
+            "demo01": "password1",
+            "demo02": "password2"
+        };
 
         // --- カテゴリコードの変換マップ ---
         const oldTagMap = { '10': '半袖Ｔシャツ', '11': '長袖Ｔシャツ', '12': '半袖ポロシャツ', '13': '長袖ポロシャツ', '14': '半袖シャツ', '15': '長袖シャツ', '16': '半袖その他・ベスト', '17': '長袖その他', '30': 'パンツ', '31': 'ショートパンツ', '32': 'スカート', '40': 'トレーナー・パーカー・フリース', '41': 'カーディガン・ニット', '50': 'コート', '51': 'ジャケット・スーツ', '52': '革・ダウン・スタジャン', '53': 'アウターその他', '54': 'ナイロンジャケット', '60': 'オーバーオール・ワンピース', '61': 'ミリタリー・アウトドア', '62': 'スポーツウェア', 'FF': 'その他' };
@@ -296,111 +402,137 @@
         }
 
         // --- File Handling ---
-        const createDropZone = (zone, input, info) => {
+        const createDropZone = (zone, input, info, fileStore) => {
             zone.addEventListener('click', () => input.click());
-            zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('border-indigo-500', 'bg-indigo-50'); });
-            zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-50'); });
-            return (handler) => {
-                zone.addEventListener('drop', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-50'); handler(e.dataTransfer.files, info); });
-                input.addEventListener('change', (e) => { handler(e.target.files, info); });
-            };
+            zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('border-indigo-500', 'bg-indigo-600'); });
+            zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); });
+            const setFiles = (files) => {
+                fileStore.length = 0;
+                Array.from(files).forEach(f => fileStore.push(f));
+                info.textContent = `${files.length}個のファイルを選択中`;
+            }
+            zone.addEventListener('drop', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); setFiles(e.dataTransfer.files); });
+            input.addEventListener('change', (e) => { setFiles(e.target.files); });
         };
 
-        const handleFiles = async (files, infoElem, parser, dataArray) => {
-            if (files.length === 0) return;
-            infoElem.textContent = `${files.length}個のファイルを読み込み中...`;
-            importStatus.textContent = '';
-            importStatus.classList.remove('text-red-600', 'text-green-600');
+        createDropZone(salesDropZone, salesFileInput, salesFileInfo, currentSalesFiles);
+        createDropZone(visitorDropZone, visitorFileInput, visitorFileInfo, currentVisitorFiles);
+        
+        async function uploadAndSaveFiles() {
+            if (currentSalesFiles.length === 0 && currentVisitorFiles.length === 0) {
+                importStatus.textContent = "アップロードするファイルを選択してください。";
+                importStatus.classList.add('text-red-400');
+                return;
+            }
+
+            importStatus.textContent = 'アップロード処理中...';
+            importStatus.classList.remove('text-red-400', 'text-green-400');
+
+            const readFileAsText = (file) => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = (e) => reject(new Error(`File read error: ${e}`));
+                    reader.readAsText(file, 'Shift_JIS');
+                });
+            };
 
             try {
-                const fileReadPromises = Array.from(files).map(file => {
-                    if (file.type !== 'text/csv' && !file.name.endsWith('.csv')) {
-                        throw new Error('CSVファイルのみ選択してください。');
-                    }
-                    return new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.onload = (e) => resolve(e.target.result);
-                        reader.onerror = () => reject(new Error(`ファイルの読み込みに失敗: ${file.name}`));
-                        reader.readAsText(file, 'Shift_JIS');
-                    });
-                });
-                const csvTexts = await Promise.all(fileReadPromises);
+                let salesCsvText = "";
+                if (currentSalesFiles.length > 0) {
+                    const salesTexts = await Promise.all(currentSalesFiles.map(readFileAsText));
+                    salesCsvText = salesTexts.join('\n');
+                }
                 
-                dataArray.length = 0;
-                csvTexts.forEach(text => {
-                    const parsed = parser(text);
-                    dataArray.push(...parsed);
-                });
-                
-                infoElem.textContent = `${files.length}個のファイルを処理しました。`;
-                
-                if (salesData.length > 0 || visitorData.length > 0) {
-                    runAnalysisAndDisplay();
-                } else {
-                     importStatus.textContent = '有効なデータが読み込めませんでした。ファイルの形式を確認してください。';
-                     importStatus.classList.add('text-red-600');
+                let visitorCsvText = "";
+                if (currentVisitorFiles.length > 0) {
+                    const visitorTexts = await Promise.all(currentVisitorFiles.map(readFileAsText));
+                    visitorCsvText = visitorTexts.join('\n');
                 }
 
-            } catch(error) {
-                infoElem.textContent = '';
-                importStatus.textContent = error.message;
-                importStatus.classList.add('text-red-600');
-            }
-        };
+                const tempSalesData = parseSalesCSV(salesCsvText || "");
+                const tempVisitorData = parseVisitorCSV(visitorCsvText || "");
 
-        createDropZone(salesDropZone, salesFileInput, salesFileInfo)(files => handleFiles(files, salesFileInfo, parseSalesCSV, salesData));
-        createDropZone(visitorDropZone, visitorFileInput, visitorFileInfo)(files => handleFiles(files, visitorFileInfo, parseVisitorCSV, visitorData));
+                if (tempSalesData.length === 0 && tempVisitorData.length === 0) {
+                    throw new Error("CSVファイルから有効なデータを読み取れませんでした。");
+                }
+                
+                const firstSaleDate = tempSalesData.length > 0 ? parseDate(tempSalesData[0].dateTime) : null;
+                const firstVisitorDate = tempVisitorData.length > 0 ? parseDate(tempVisitorData[0].date) : null;
+                
+                const representativeDate = firstSaleDate || firstVisitorDate;
+                if (!representativeDate) {
+                    throw new Error("データから有効な日付を取得できませんでした。");
+                }
+                
+                const year = representativeDate.getFullYear();
+                const month = representativeDate.getMonth() + 1;
+                
+                const docId = `${year}-${String(month).padStart(2, '0')}`;
+                const label = `${year}年${month}月データ`;
+                
+                const docRef = doc(db, "artifacts", appId, "users", userId, "datasets", docId);
+                const docSnap = await getDoc(docRef);
+                const existingData = docSnap.exists() ? docSnap.data() : {};
+
+                const dataToSave = {
+                    label: label,
+                    salesDataRaw: salesCsvText || existingData.salesDataRaw || "",
+                    visitorDataRaw: visitorCsvText || existingData.visitorDataRaw || "",
+                    createdAt: new Date()
+                };
+
+                await setDoc(docRef, dataToSave); 
+                
+                importStatus.textContent = `「${label}」を保存・更新しました。分析結果を表示します...`;
+                importStatus.classList.add('text-green-400');
+                
+                salesData = parseSalesCSV(dataToSave.salesDataRaw);
+                visitorData = parseVisitorCSV(dataToSave.visitorDataRaw);
+                runAnalysisAndDisplay();
+                
+                currentSalesFiles.length = 0;
+                currentVisitorFiles.length = 0;
+                salesFileInfo.textContent = '';
+                visitorFileInfo.textContent = '';
+
+            } catch (error) {
+                console.error("Upload failed:", error);
+                importStatus.textContent = `エラーが発生しました: ${error.message}`;
+                importStatus.classList.add('text-red-400');
+            }
+        }
+        
+        uploadBtn.addEventListener('click', uploadAndSaveFiles);
 
         function parseSalesCSV(csvText) {
             const lines = csvText.trim().split(/\r?\n/);
             const data = [];
-            console.log(`--- 売上CSV解析開始: ${lines.length - 1}行 ---`);
             for (let i = 1; i < lines.length; i++) {
                 const values = lines[i].split(',');
-                if (values.length <= 6) {
-                    console.warn(`Skipping sales row ${i + 1}: Not enough columns.`, values);
-                    continue;
-                }
+                if (values.length <= 6) continue;
                 const dateTimeStr = values[2]?.trim();
-                if (!dateTimeStr) {
-                    console.warn(`Skipping sales row ${i + 1}: Date is empty.`, values);
-                    continue;
-                }
+                if (!dateTimeStr) continue;
                 const priceString = values[6] ? String(values[6]).replace(/[^0-9]/g, '') : '';
                 const price = parseInt(priceString, 10);
-                if (isNaN(price)) {
-                    console.warn(`Skipping sales row ${i + 1}: Invalid price.`, values);
-                    continue;
-                }
+                if (isNaN(price)) continue;
                 data.push({ dateTime: dateTimeStr, category: values[4]?.trim(), price: price });
             }
-            console.log(`--- 売上CSV解析完了: ${data.length}件の有効データを取得 ---`);
             return data;
         }
 
         function parseVisitorCSV(csvText) {
             const lines = csvText.trim().split(/\r?\n/);
             const data = [];
-            console.log(`--- 来店客数CSV解析開始: ${lines.length - 1}行 ---`);
             for (let i = 1; i < lines.length; i++) {
                 const values = lines[i].split(',');
-                 if (values.length <= 8) {
-                    console.warn(`Skipping visitor row ${i + 1}: Not enough columns.`, values);
-                    continue;
-                }
+                if (values.length <= 8) continue;
                 const dateStr = values[2]?.trim();
-                 if (!dateStr) {
-                    console.warn(`Skipping visitor row ${i + 1}: Date is empty.`, values);
-                    continue;
-                }
+                if (!dateStr) continue;
                 const visitorCount = parseInt(String(values[8]).replace(/[^0-9]/g, ''), 10);
-                if (isNaN(visitorCount)) {
-                    console.warn(`Skipping visitor row ${i + 1}: Invalid visitor count.`, values);
-                    continue;
-                }
+                if (isNaN(visitorCount)) continue;
                 data.push({ date: dateStr, totalVisitors: visitorCount });
             }
-            console.log(`--- 来店客数CSV解析完了: ${data.length}件の有効データを取得 ---`);
             return data;
         }
 
@@ -416,45 +548,37 @@
         }
 
         // --- Analysis ---
+        const parseDate = (dateString) => {
+            if (!dateString) return null;
+            const cleanDateString = dateString.trim().replace(/^"|"$/g, '');
+
+            if (/^\d{8}(\d{2})?$/.test(cleanDateString)) {
+                const year = parseInt(cleanDateString.substring(0, 4), 10);
+                const month = parseInt(cleanDateString.substring(4, 6), 10) - 1;
+                const day = parseInt(cleanDateString.substring(6, 8), 10);
+                const hours = cleanDateString.length >= 10 ? parseInt(cleanDateString.substring(8, 10), 10) : 0;
+                const dateObj = new Date(year, month, day, hours);
+                if (!isNaN(dateObj.getTime())) return dateObj;
+            }
+
+            const parts = cleanDateString.match(/(\d{4})[-.\/](\d{1,2})[-.\/](\d{1,2})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?/);
+            if (parts) {
+                const year = parseInt(parts[1], 10);
+                const month = parseInt(parts[2], 10) - 1;
+                const day = parseInt(parts[3], 10);
+                const hours = parts[4] ? parseInt(parts[4], 10) : 0;
+                const minutes = parts[5] ? parseInt(parts[5], 10) : 0;
+                const seconds = parts[6] ? parseInt(parts[6], 10) : 0;
+                const dateObj = new Date(year, month, day, hours, minutes, seconds);
+                if (!isNaN(dateObj.getTime())) return dateObj;
+            }
+
+            return null;
+        };
+
         function analyzeData(sales, visitors) {
             const dailyData = {};
-            const uniqueCustomers = new Set();
-
-            // ★修正点：より堅牢な日付解析関数
-            const parseDate = (dateString) => {
-                if (!dateString) return null;
-                const cleanDateString = dateString.trim().replace(/^"|"$/g, '');
-
-                // YYYYMMDDHH or YYYYMMDD format
-                if (/^\d{8}(\d{2})?$/.test(cleanDateString)) {
-                    const year = parseInt(cleanDateString.substring(0, 4), 10);
-                    const month = parseInt(cleanDateString.substring(4, 6), 10) - 1; // Month is 0-indexed
-                    const day = parseInt(cleanDateString.substring(6, 8), 10);
-                    const hours = cleanDateString.length >= 10 ? parseInt(cleanDateString.substring(8, 10), 10) : 0;
-                    const dateObj = new Date(year, month, day, hours);
-                    if (!isNaN(dateObj.getTime())) {
-                        return dateObj;
-                    }
-                }
-
-                // "YYYY-MM-DD HH:mm:ss" or "YYYY/MM/DD HH:mm:ss"
-                const parts = cleanDateString.match(/(\d{4})[-.\/](\d{1,2})[-.\/](\d{1,2})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?/);
-                if (parts) {
-                    const year = parseInt(parts[1], 10);
-                    const month = parseInt(parts[2], 10) - 1; // Month is 0-indexed
-                    const day = parseInt(parts[3], 10);
-                    const hours = parts[4] ? parseInt(parts[4], 10) : 0;
-                    const minutes = parts[5] ? parseInt(parts[5], 10) : 0;
-                    const seconds = parts[6] ? parseInt(parts[6], 10) : 0;
-                    const dateObj = new Date(year, month, day, hours, minutes, seconds);
-                     if (!isNaN(dateObj.getTime())) {
-                        return dateObj;
-                    }
-                }
-
-                return null; // Return null if no format matches
-            };
-
+            
             sales.forEach(item => {
                 const dateObj = parseDate(item.dateTime);
                 if (!dateObj || isNaN(dateObj.getTime())) {
@@ -464,14 +588,14 @@
                 const datePart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getDate()).padStart(2, '0')}`;
                 
                 if (!dailyData[datePart]) {
-                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {} };
+                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
                 }
                 
                 const category = translateCategoryCode(item.category, item.dateTime);
                 dailyData[datePart].sales += item.price;
                 dailyData[datePart].purchases += 1;
                 dailyData[datePart].categoryCounts[category] = (dailyData[datePart].categoryCounts[category] || 0) + 1;
-                uniqueCustomers.add(item.dateTime);
+                dailyData[datePart].customerTransactions.add(item.dateTime);
             });
 
             visitors.forEach(item => {
@@ -482,7 +606,7 @@
                 }
                 const datePart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getDate()).padStart(2, '0')}`;
                 if (!dailyData[datePart]) {
-                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {} };
+                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
                 }
                 dailyData[datePart].visitors += item.totalVisitors;
             });
@@ -496,26 +620,42 @@
                 const weekStartDate = getFridayWeekStartDate(dateObj);
                 const monthPart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}`;
 
-                if (!weeklyStats[weekStartDate]) weeklyStats[weekStartDate] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {} };
-                if (!monthlyStats[monthPart]) monthlyStats[monthPart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {} };
+                if (!weeklyStats[weekStartDate]) weeklyStats[weekStartDate] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+                if (!monthlyStats[monthPart]) monthlyStats[monthPart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
 
                 weeklyStats[weekStartDate].sales += dayData.sales;
                 weeklyStats[weekStartDate].purchases += dayData.purchases;
                 weeklyStats[weekStartDate].visitors += dayData.visitors;
+                dayData.customerTransactions.forEach(t => weeklyStats[weekStartDate].customerTransactions.add(t));
                 for(const cat in dayData.categoryCounts) weeklyStats[weekStartDate].categoryCounts[cat] = (weeklyStats[weekStartDate].categoryCounts[cat] || 0) + dayData.categoryCounts[cat];
 
                 monthlyStats[monthPart].sales += dayData.sales;
                 monthlyStats[monthPart].purchases += dayData.purchases;
                 monthlyStats[monthPart].visitors += dayData.visitors;
+                dayData.customerTransactions.forEach(t => monthlyStats[monthPart].customerTransactions.add(t));
                 for(const cat in dayData.categoryCounts) monthlyStats[monthPart].categoryCounts[cat] = (monthlyStats[monthPart].categoryCounts[cat] || 0) + dayData.categoryCounts[cat];
             }
             
             const calculateDerivedMetrics = (period) => {
-                for (const key in period) {
+                const sortedKeys = Object.keys(period).sort((a, b) => new Date(a) - new Date(b));
+                sortedKeys.forEach((key, index) => {
                     const s = period[key];
-                    s.customerCount = s.purchases;
+                    s.customerCount = s.customerTransactions.size;
                     s.conversionRate = s.visitors > 0 ? (s.customerCount / s.visitors) * 100 : 0;
-                }
+                    s.avgItemsPerCustomer = s.customerCount > 0 ? s.purchases / s.customerCount : 0;
+                    s.averagePrice = s.purchases > 0 ? s.sales / s.purchases : 0;
+                    s.avgCustomerSpend = s.customerCount > 0 ? s.sales / s.customerCount : 0;
+
+                    if (index > 0) {
+                        const prevKey = sortedKeys[index - 1];
+                        const prevS = period[prevKey];
+                        Object.keys(s).forEach(metric => {
+                            if (typeof s[metric] === 'number' && typeof prevS[metric] === 'number' && prevS[metric] !== 0) {
+                                s[`${metric}Change`] = ((s[metric] - prevS[metric]) / prevS[metric]) * 100;
+                            }
+                        });
+                    }
+                });
             };
             
             calculateDerivedMetrics(dailyData);
@@ -523,7 +663,7 @@
             calculateDerivedMetrics(monthlyStats);
             
             const totalItems = sales.length;
-            const customerCount = uniqueCustomers.size;
+            const customerCount = new Set(sales.map(s => s.dateTime)).size;
             const totalRevenue = sales.reduce((sum, item) => sum + item.price, 0);
             const totalVisitors = visitors.reduce((sum, item) => sum + item.totalVisitors, 0);
 
@@ -544,54 +684,8 @@
 
             analysisResultCache = analyzeData(salesData, visitorData);
             
-            importStatus.textContent = `売上データ${salesData.length}件、来店客データ${visitorData.length}件を読み込みました。`;
-            importStatus.classList.add('text-green-600');
-
-            displayDashboard(analysisResultCache);
             showPage('analytic-page');
             showTab('tab-daily');
-        }
-
-        function displayDashboard(result) {
-            document.getElementById('total-revenue').textContent = `¥${result.totalRevenue.toLocaleString()}`;
-            document.getElementById('total-items').textContent = result.totalItems.toLocaleString();
-            document.getElementById('customer-count').textContent = result.customerCount.toLocaleString();
-            document.getElementById('visitor-count').textContent = result.visitorCount.toLocaleString();
-            document.getElementById('conversion-rate').textContent = `${result.conversionRate.toFixed(1)}%`;
-            document.getElementById('avg-customer-spend').textContent = `¥${Math.round(result.avgCustomerSpend).toLocaleString()}`;
-            document.getElementById('average-price').textContent = `¥${Math.round(result.averagePrice).toLocaleString()}`;
-            document.getElementById('avg-items-per-customer').textContent = `${result.avgItemsPerCustomer.toFixed(1)} 点`;
-            
-            ['daily', 'weekly', 'monthly'].forEach(period => {
-                const container = document.getElementById(`${period}-category-rankings`);
-                container.innerHTML = '';
-                const sortedKeys = Object.keys(result[period]).sort((a,b) => new Date(b) - new Date(a));
-                if (sortedKeys.length === 0) {
-                    container.innerHTML = `<div class="text-center text-gray-500 py-4">表示するデータがありません。</div>`;
-                    return;
-                }
-                sortedKeys.forEach(key => {
-                    const stats = result[period][key];
-                    if(!stats.categoryCounts) return;
-                    const ranked = Object.entries(stats.categoryCounts).sort(([,a],[,b]) => b-a).slice(0, period === 'daily' ? 3 : 5);
-                    if(ranked.length === 0) return;
-                    let displayKey = key;
-                    if (period === 'weekly') {
-                        const startDate = new Date(key.replace(/-/g, '/'));
-                        const endDate = new Date(startDate);
-                        endDate.setDate(startDate.getDate() + 6);
-                        displayKey = `${key.replace(/-/g, '/')} ～ ${(endDate.getMonth() + 1)}/${endDate.getDate()}`;
-                    }
-                    let html = `<div><h4 class="font-semibold text-md mb-2 bg-gray-50 p-2 rounded">${displayKey}</h4><div class="space-y-2 text-sm pl-2">`;
-                    ranked.forEach(([name, value], index) => {
-                        const percentage = stats.purchases > 0 ? ((value / stats.purchases) * 100).toFixed(1) : '0.0';
-                        const rankColor = ['text-amber-500', 'text-slate-500', 'text-amber-700'][index] || 'text-gray-600';
-                        html += `<div class="flex items-center"><span class="font-bold w-6 text-center ${rankColor}">${index + 1}.</span><div class="flex-1 font-semibold text-gray-800">${name}</div><div class="w-24 text-right text-gray-600">${value} 点 (${percentage}%)</div></div>`;
-                    });
-                    html += `</div></div>`;
-                    container.innerHTML += html;
-                });
-            });
         }
         
         const createChart = (canvasId, options) => {
@@ -601,7 +695,6 @@
             if (!noDataMessage) {
                 noDataMessage = document.createElement('div');
                 noDataMessage.className = 'no-data-message';
-                noDataMessage.textContent = '表示するデータがありません。';
                 container.appendChild(noDataMessage);
             }
 
@@ -632,7 +725,50 @@
             pages.forEach(page => page.classList.add('hidden'));
             document.getElementById(pageId).classList.remove('hidden');
             navLinks.forEach(link => link.classList.remove('active'));
-            document.getElementById(`nav-${pageId.split('-')[0]}`).classList.add('active');
+            const navId = `nav-${pageId.replace('-page', '')}`;
+            const activeLink = document.getElementById(navId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        function updateSummaryDashboard(data, title) {
+            summaryTitle.textContent = title;
+            
+            const metrics = {
+                'total-revenue': { value: data.sales || data.totalRevenue || 0, prefix: '¥', change: data.salesChange },
+                'total-items': { value: data.purchases || data.totalItems || 0, change: data.purchasesChange },
+                'customer-count': { value: data.customerCount || 0, change: data.customerCountChange },
+                'visitor-count': { value: data.visitors || data.visitorCount || 0, change: data.visitorsChange },
+                'conversion-rate': { value: data.conversionRate || 0, suffix: '%', toFixed: 1, change: data.conversionRateChange, isPercentage: true },
+                'avg-customer-spend': { value: data.avgCustomerSpend || 0, prefix: '¥', change: data.avgCustomerSpendChange },
+                'average-price': { value: data.averagePrice || 0, prefix: '¥', change: data.averagePriceChange },
+                'avg-items-per-customer': { value: data.avgItemsPerCustomer || 0, suffix: ' 点', toFixed: 1, change: data.avgItemsPerCustomerChange },
+            };
+
+            for (const id in metrics) {
+                const metric = metrics[id];
+                const valueEl = document.getElementById(id);
+                const changeEl = document.getElementById(`${id}-change`);
+                
+                let formattedValue = typeof metric.value === 'number' ? Math.round(metric.value).toLocaleString() : metric.value;
+                if(metric.toFixed) formattedValue = metric.value.toFixed(metric.toFixed);
+
+                valueEl.textContent = `${metric.prefix || ''}${formattedValue}${metric.suffix || ''}`;
+
+                if (metric.change !== undefined && metric.change !== null) {
+                    const isPositive = metric.change >= 0;
+                    const colorClass = isPositive ? 'text-green-400' : 'text-red-400';
+                    const arrow = isPositive ? '↑' : '↓';
+                    const changeValue = metric.isPercentage ? metric.change.toFixed(1) : Math.abs(metric.change).toFixed(1);
+
+                    changeEl.innerHTML = `<span class="${colorClass}">${arrow} ${changeValue}%</span>`;
+                    changeEl.classList.remove('hidden');
+                } else {
+                    changeEl.innerHTML = '';
+                    changeEl.classList.add('hidden');
+                }
+            }
         }
 
         function showTab(tabId) {
@@ -646,31 +782,176 @@
             
             requestAnimationFrame(() => {
                 const result = analysisResultCache;
-                if (!result) return;
-                const colors = { sales: 'rgba(79, 70, 229, 0.8)', customers: 'rgba(5, 150, 105, 0.8)', visitors: 'rgba(249, 115, 22, 0.8)', conversion: 'rgba(239, 68, 68, 0.8)'};
+                if (!result) {
+                    updateSummaryDashboard({}, "データがありません");
+                    return;
+                };
+                const chartColor = 'rgba(224, 231, 255, 0.7)';
+                const chartGridColor = 'rgba(199, 210, 254, 0.2)';
+                const chartOptions = {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    layout: { padding: 10 },
+                    scales: {
+                        y: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } },
+                        x: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } }
+                    }
+                };
+                const lineChartOptions = (unit = '') => ({
+                    ...chartOptions,
+                    scales: {
+                        y: { ticks: { color: chartColor, callback: v => `${v}${unit}` }, grid: { color: chartGridColor, drawBorder: false } },
+                        x: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } }
+                    }
+                });
+
+                const colors = { sales: '#818cf8', purchases: '#34d399', customers: '#6ee7b7', visitors: '#facc15', conversion: '#f87171', avgItems: '#fbbf24', avgPrice: '#f472b6'};
                 
                 if (tabId === 'tab-daily') {
-                    const sortedDays = Object.keys(result.daily).sort((a,b) => new Date(a) - new Date(b));
-                    createChart('daily-chart', { type: 'bar', data: { labels: sortedDays, datasets: [{ label: '売上', data: sortedDays.map(d => result.daily[d].sales), backgroundColor: colors.sales }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
-                    createChart('daily-customer-count-chart', { type: 'bar', data: { labels: sortedDays, datasets: [{ label: '購買客数', data: sortedDays.map(d => result.daily[d].customerCount), backgroundColor: colors.customers }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
-                    createChart('daily-visitor-count-chart', { type: 'bar', data: { labels: sortedDays, datasets: [{ label: '来店客数', data: sortedDays.map(d => result.daily[d].visitors), backgroundColor: colors.visitors }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
-                    createChart('daily-conversion-chart', { type: 'line', data: { labels: sortedDays, datasets: [{ label: '転換率', data: sortedDays.map(d => result.daily[d].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { callback: v => `${v}%` } } } } });
+                    updateSummaryDashboard(result, "全体サマリー");
+                    const allSortedDays = Object.keys(result.daily).sort((a,b) => new Date(a) - new Date(b));
+                    
+                    createChart('daily-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '売上', data: allSortedDays.map(d => result.daily[d].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('daily-purchase-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '購買数', data: allSortedDays.map(d => result.daily[d].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('daily-customer-count-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '購買客数', data: allSortedDays.map(d => result.daily[d].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+
+                    const firstVisitorDayIndex = allSortedDays.findIndex(day => result.daily[day].visitors > 0);
+                    const visitorDays = firstVisitorDayIndex !== -1 ? allSortedDays.slice(firstVisitorDayIndex) : [];
+
+                    createChart('daily-visitor-count-chart', { type: 'bar', data: { labels: visitorDays, datasets: [{ label: '来店客数', data: visitorDays.map(d => result.daily[d].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('daily-conversion-chart', { type: 'line', data: { labels: visitorDays, datasets: [{ label: '購買率', data: visitorDays.map(d => result.daily[d].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
                 }
 
                 if (tabId === 'tab-weekly') {
                     const sortedWeeks = Object.keys(result.weekly).sort((a,b) => new Date(a) - new Date(b));
-                    createChart('weekly-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '売上', data: sortedWeeks.map(w => result.weekly[w].sales), backgroundColor: colors.sales }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
-                    createChart('weekly-visitors-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '購買客数', data: sortedWeeks.map(w => result.weekly[w].customerCount), backgroundColor: colors.customers }, { label: '来店客数', data: sortedWeeks.map(w => result.weekly[w].visitors), backgroundColor: colors.visitors }] }, options: { responsive: true, maintainAspectRatio: false } });
-                    createChart('weekly-conversion-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '転換率', data: sortedWeeks.map(w => result.weekly[w].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { callback: v => `${v}%` } } } } });
+                    const latestWeekKey = sortedWeeks[sortedWeeks.length - 1];
+                    const latestWeekData = result.weekly[latestWeekKey];
+                    if(latestWeekData) updateSummaryDashboard(latestWeekData, `最新週のサマリー (${latestWeekKey}〜)`);
+                    
+                    createChart('weekly-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '売上', data: sortedWeeks.map(w => result.weekly[w].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('weekly-purchase-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '購買数', data: sortedWeeks.map(w => result.weekly[w].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('weekly-customer-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '購買客数', data: sortedWeeks.map(w => result.weekly[w].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+                    createChart('weekly-visitor-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '来店客数', data: sortedWeeks.map(w => result.weekly[w].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('weekly-conversion-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '購買率', data: sortedWeeks.map(w => result.weekly[w].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                    createChart('weekly-avg-items-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '平均買上点数', data: sortedWeeks.map(w => result.weekly[w].avgItemsPerCustomer.toFixed(2)), borderColor: colors.avgItems, backgroundColor: colors.avgItems, fill: false, tension: 0.1 }] }, options: lineChartOptions('点') });
+                    createChart('weekly-avg-price-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '平均商品単価', data: sortedWeeks.map(w => Math.round(result.weekly[w].averagePrice)), borderColor: colors.avgPrice, backgroundColor: colors.avgPrice, fill: false, tension: 0.1 }] }, options: lineChartOptions('円') });
                 }
 
                 if (tabId === 'tab-monthly') {
                     const sortedMonths = Object.keys(result.monthly).sort();
-                    createChart('monthly-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '売上', data: sortedMonths.map(m => result.monthly[m].sales), backgroundColor: colors.sales }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
-                    createChart('monthly-visitors-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '購買客数', data: sortedMonths.map(m => result.monthly[m].customerCount), backgroundColor: colors.customers }, { label: '来店客数', data: sortedMonths.map(m => result.monthly[m].visitors), backgroundColor: colors.visitors }] }, options: { responsive: true, maintainAspectRatio: false } });
-                    createChart('monthly-conversion-chart', { type: 'line', data: { labels: sortedMonths, datasets: [{ label: '転換率', data: sortedMonths.map(m => result.monthly[m].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { callback: v => `${v}%` } } } } });
+                    const latestMonthKey = sortedMonths[sortedMonths.length - 1];
+                    const latestMonthData = result.monthly[latestMonthKey];
+                    if(latestMonthData) updateSummaryDashboard(latestMonthData, `最新月のサマリー (${latestMonthKey.replace('/', '年')}月)`);
+
+                    createChart('monthly-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '売上', data: sortedMonths.map(m => result.monthly[m].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('monthly-purchase-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '購買数', data: sortedMonths.map(m => result.monthly[m].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('monthly-customer-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '購買客数', data: sortedMonths.map(m => result.monthly[m].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+                    createChart('monthly-visitor-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '来店客数', data: sortedMonths.map(m => result.monthly[m].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('monthly-conversion-chart', { type: 'line', data: { labels: sortedMonths, datasets: [{ label: '購買率', data: sortedMonths.map(m => result.monthly[m].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                }
+                
+                if (tabId.startsWith('tab-')) {
+                    const period = tabId.replace('tab-', '');
+                    displayRankings(period, result);
                 }
             }); 
+        }
+        
+        function getCategoryIcon(categoryName) {
+            const iconClass = "h-5 w-5 mr-3 text-pink-300 flex-shrink-0";
+            switch (true) {
+                case /Tシャツ/.test(categoryName):
+                    return `<span class="font-bold text-lg ${iconClass}" style="line-height: 1.25rem; width: 1.25rem; text-align: center;">T</span>`;
+                case /シャツ\/半袖/.test(categoryName):
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.5,6.5H15V4.5a2,2,0,0,0-2-2h-2a2,2,0,0,0-2,2V6.5H6.5a2,2,0,0,0-2,2v8a2,2,0,0,0,2,2h11a2,2,0,0,0,2-2v-8A2,2,0,0,0,17.5,6.5Zm-7-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5V6.5h-3Z"/></svg>`;
+                case /シャツ/.test(categoryName):
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m-4-12l-4 4v10h16V8l-4-4H12z" /></svg>`;
+                case /パンツ/.test(categoryName):
+                     return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 4v16m8-16v16M8 4h8m-8 16h8" /></svg>`;
+                case /ジャケット|アウター|コート|ジャン/.test(categoryName):
+                     return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16M4 12l8-8 8 8M4 12v8h16v-8" /></svg>`;
+                default:
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>`;
+            }
+        }
+
+        function displayRankings(period, result) {
+            const container = document.getElementById(`${period}-category-rankings`);
+            if (!container) return;
+            container.innerHTML = '';
+            const sortedKeys = Object.keys(result[period]).sort((a,b) => new Date(b) - new Date(a));
+            if (sortedKeys.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-400 py-4 col-span-full">表示するデータがありません。</div>`;
+                return;
+            }
+            sortedKeys.forEach(key => {
+                const stats = result[period][key];
+                if(!stats.categoryCounts) return;
+                const ranked = Object.entries(stats.categoryCounts).sort(([,a],[,b]) => b-a).slice(0, 5);
+                if(ranked.length === 0) return;
+
+                let displayKey = key;
+                if (period === 'weekly') {
+                    const startDate = new Date(key.replace(/-/g, '/'));
+                    const endDate = new Date(startDate);
+                    endDate.setDate(startDate.getDate() + 6);
+                    displayKey = `${key.replace(/-/g, '/')} ～ ${(endDate.getMonth() + 1)}/${endDate.getDate()}`;
+                } else if (period === 'monthly') {
+                    displayKey = `${key.replace('/', '年')}月`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'bg-indigo-800 p-6 rounded-2xl shadow-lg';
+                
+                const title = document.createElement('h4');
+                title.className = 'font-semibold text-lg mb-4 text-white';
+                title.textContent = `${displayKey} カテゴリ別購買数`;
+                card.appendChild(title);
+
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = 'space-y-4';
+                
+                const maxValue = Math.max(...ranked.map(item => item[1]));
+                const colors = ['#ec4899', '#f472b6', '#f9a8d4', '#fbcfe8', '#fce7f3'];
+
+                ranked.forEach(([name, value], index) => {
+                    const percentage = stats.purchases > 0 ? ((value / stats.purchases) * 100).toFixed(1) : '0.0';
+                    const barWidth = maxValue > 0 ? (value / maxValue) * 100 : 0;
+                    
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'grid grid-cols-12 gap-4 items-center text-sm';
+                    
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'col-span-4 flex items-center';
+                    nameDiv.innerHTML = `${getCategoryIcon(name)}<span class="font-semibold text-indigo-200 truncate">${name}</span>`;
+
+                    const barDiv = document.createElement('div');
+                    barDiv.className = 'col-span-8 flex items-center';
+
+                    const barContainer = document.createElement('div');
+                    barContainer.className = 'flex-1 bg-indigo-700/50 rounded-full h-4';
+                    
+                    const bar = document.createElement('div');
+                    bar.className = 'h-4 rounded-full';
+                    bar.style.width = `${barWidth}%`;
+                    bar.style.backgroundColor = colors[index % colors.length];
+
+                    const valueSpan = document.createElement('span');
+                    valueSpan.className = 'ml-3 w-28 text-left text-indigo-200';
+                    valueSpan.textContent = `${value}点 (${percentage}%)`;
+
+                    barContainer.appendChild(bar);
+                    barDiv.appendChild(barContainer);
+                    barDiv.appendChild(valueSpan);
+
+                    itemDiv.appendChild(nameDiv);
+                    itemDiv.appendChild(barDiv);
+                    contentWrapper.appendChild(itemDiv);
+                });
+                
+                card.appendChild(contentWrapper);
+                container.appendChild(card);
+            });
         }
         
         function saveSettings() {
@@ -698,6 +979,107 @@
         function updateStoreName(name) {
             storeNameDisplay.textContent = name || 'VINTAGE ANALYZER';
         }
+        
+        // --- AI Report Generation ---
+        async function generateAIReport() {
+            if (!analysisResultCache) {
+                reportContainer.innerHTML = '<p class="text-red-400">分析データがありません。まず「Import」ページからデータをアップロードしてください。</p>';
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            reportContainer.classList.add('hidden');
+
+            const monthlyData = analysisResultCache.monthly;
+            const sortedMonths = Object.keys(monthlyData).sort().slice(-3);
+
+            if (sortedMonths.length === 0) {
+                reportContainer.innerHTML = '<p class="text-red-400">レポートを生成するための月次データがありません。</p>';
+                loadingIndicator.classList.add('hidden');
+                reportContainer.classList.remove('hidden');
+                return;
+            }
+            
+            let dataSummary = "以下は、ある古着店の直近" + sortedMonths.length + "カ月の売上データです。\n\n";
+            sortedMonths.forEach(month => {
+                const d = monthlyData[month];
+                const avgItems = d.customerCount > 0 ? (d.purchases / d.customerCount) : 0;
+                dataSummary += `- ${month.replace('/', '年')}月:\n`;
+                dataSummary += `  - 総売上: ${d.sales.toLocaleString()}円\n`;
+                dataSummary += `  - 来店客数: ${d.visitors.toLocaleString()}人\n`;
+                dataSummary += `  - 購買率: ${d.conversionRate.toFixed(1)}%\n`;
+                dataSummary += `  - 平均商品単価: ${Math.round(d.sales / d.purchases || 0).toLocaleString()}円\n`;
+                dataSummary += `  - 一人当たり買い上げ点数: ${avgItems.toFixed(2)}点\n\n`;
+            });
+
+            const prompt = `
+あなたは優秀な経営コンサルタントです。
+${dataSummary}
+このデータを分析し、「売上 = 来店客数 × 購買率 × 商品単価 × 買い上げ点数」という観点から、経営状況の要約と、今後の改善に向けた具体的な提案を生成してください。
+レポートは以下の形式で、Markdownを使用して記述してください。
+
+### 直近${sortedMonths.length}カ月の売上分析レポート
+
+#### 1. 全体サマリー
+*（ここに全体的な状況の要約を記述）*
+
+#### 2. 各指標の分析
+* **来店客数:** （来店客数の推移と考察）
+* **購買率:** （購買率の推移と考察）
+* **商品単価:** （商品単価の推移と考察）
+* **買い上げ点数:** （買い上げ点数の推移と考察）
+
+#### 3. 結論と改善提案
+*（分析に基づいた結論と、具体的なアクションプランを提案）*
+`;
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // APIキーは不要
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const rawText = result.candidates[0].content.parts[0].text;
+                    reportContainer.innerHTML = simpleMarkdownToHtml(rawText);
+                } else {
+                    throw new Error("AIからの有効な応答がありませんでした。");
+                }
+
+            } catch (error) {
+                reportContainer.innerHTML = `<p class="text-red-400">レポートの生成中にエラーが発生しました: ${error.message}</p>`;
+            } finally {
+                loadingIndicator.classList.add('hidden');
+                reportContainer.classList.remove('hidden');
+            }
+        }
+
+        function simpleMarkdownToHtml(markdown) {
+            return markdown
+                .replace(/### (.*)/g, '<h3 class="text-xl font-bold mt-6 mb-4">$1</h3>')
+                .replace(/#### (.*)/g, '<h4 class="text-lg font-semibold mt-4 mb-2">$1</h4>')
+                .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                .replace(/^\* (.*)/gm, '<li>$1</li>')
+                .replace(/<li>/g, '<ul><li>')
+                .replace(/<\/li>\n<ul>/g, '</li><li>')
+                .replace(/<\/li>(?!<li>)/g, '</li></ul>')
+                .replace(/\n/g, '<br>');
+        }
+
 
         saveSettingsBtn.addEventListener('click', saveSettings);
         togglePasswordVisibility.addEventListener('click', () => {
@@ -710,7 +1092,7 @@
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                showPage(`${e.target.id.split('-')[1]}-page`);
+                showPage(`${e.currentTarget.id.replace('nav-', '')}-page`);
             });
         });
 
@@ -721,11 +1103,91 @@
             });
         });
         
-        document.getElementById('go-to-import-btn').addEventListener('click', () => showPage('import-page'));
+        generateReportBtn.addEventListener('click', generateAIReport);
+
+        // --- Login Logic ---
+        loginBtn.addEventListener('click', () => {
+            const userIdInputVal = userIdInput.value;
+            const password = passwordLoginInput.value;
+
+            if (users[userIdInputVal] && users[userIdInputVal] === password) {
+                loginPage.classList.add('hidden');
+                appContainer.classList.remove('hidden');
+                
+                // Firebase Initialization
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                signInAnonymously(auth).then((userCredential) => {
+                    userId = userCredential.user.uid;
+                    loadSavedFiles();
+                    loadSettings();
+                    showPage('analytic-page');
+                }).catch((error) => {
+                    console.error("Anonymous sign-in failed:", error);
+                    loginErrorMessage.textContent = '認証サーバーへの接続に失敗しました。';
+                });
+
+            } else {
+                loginErrorMessage.textContent = 'ユーザーIDまたはパスワードが正しくありません。';
+            }
+        });
+        
+        async function loadData(docId) {
+            const docRef = doc(db, "artifacts", appId, "users", userId, "datasets", docId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                salesData = parseSalesCSV(data.salesDataRaw || "");
+                visitorData = parseVisitorCSV(data.visitorDataRaw || "");
+                runAnalysisAndDisplay();
+            } else {
+                console.error("No such document!");
+                importStatus.textContent = "選択されたデータの読み込みに失敗しました。";
+                importStatus.classList.add('text-red-400');
+            }
+        }
+
+        function loadSavedFiles() {
+            const q = query(collection(db, "artifacts", appId, "users", userId, "datasets"));
+            onSnapshot(q, (querySnapshot) => {
+                savedFilesList.innerHTML = '';
+                if (querySnapshot.empty) {
+                    savedFilesList.innerHTML = '<p class="text-center text-indigo-300">保存されたデータはありません。</p>';
+                    return;
+                }
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const div = document.createElement('div');
+                    div.className = 'flex justify-between items-center p-2 hover:bg-indigo-700 rounded-md';
+                    
+                    const labelSpan = document.createElement('span');
+                    labelSpan.textContent = data.label;
+                    labelSpan.className = 'cursor-pointer flex-grow text-indigo-200';
+                    labelSpan.onclick = () => loadData(doc.id);
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = '削除';
+                    deleteBtn.className = 'text-xs bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700';
+                    deleteBtn.onclick = async (e) => {
+                        e.stopPropagation();
+                        // A custom modal should be used here instead of confirm()
+                        // For simplicity, we'll proceed without confirmation for now.
+                        await deleteDoc(doc.ref);
+                    };
+                    
+                    div.appendChild(labelSpan);
+                    div.appendChild(deleteBtn);
+                    savedFilesList.appendChild(div);
+                });
+            });
+        }
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadSettings();
-            showPage('home-page');
+            // Initially, only the login page is shown.
         });
     </script>
 </body>
