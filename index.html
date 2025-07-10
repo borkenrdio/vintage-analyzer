@@ -312,6 +312,18 @@
     </div>
 
     <script type="module">
+        // ▼▼▼▼▼ ここにFirebaseからコピーした接続情報を貼り付け ▼▼▼▼▼
+        const firebaseConfig = {
+          apiKey: "AIzaSyAcVcWgUBQHw33bLCSWzqzIXOvs0szKMvo",
+          authDomain: "vintage-analyzer-f4111.firebaseapp.com",
+          projectId: "vintage-analyzer-f4111",
+          storageBucket: "vintage-analyzer-f4111.appspot.com",
+          messagingSenderId: "207991861674",
+          appId: "1:207991861674:web:a32f87d4ccb88437f7bbd3",
+          measurementId: "G-13BZQ8VXCQ"
+        };
+        // ▲▲▲▲▲ ここまで ▲▲▲▲▲
+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, addDoc, collection, query, getDocs, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -912,7 +924,28 @@
                 contentWrapper.className = 'space-y-4';
                 
                 const maxValue = Math.max(...ranked.map(item => item[1]));
-                const colors = ['#ec4899', '#f472b6', '#f9a8d4', '#fbcfe8', '#fce7f3'];
+                const colors = ['#ec4899', '#f472b6', '#f9a8d4', '#fbcfe8', '#fce7f3'].map(hex => {
+                    let r = 0, g = 0, b = 0;
+                    if (hex.length == 4) {
+                        r = "0x" + hex[1] + hex[1];
+                        g = "0x" + hex[2] + hex[2];
+                        b = "0x" + hex[3] + hex[3];
+                    } else if (hex.length == 7) {
+                        r = "0x" + hex[1] + hex[2];
+                        g = "0x" + hex[3] + hex[4];
+                        b = "0x" + hex[5] + hex[6];
+                    }
+                    return {r: +r, g: +g, b: +b};
+                });
+                
+                const gradientColors = ranked.map((_, index) => {
+                    const ratio = ranked.length > 1 ? index / (ranked.length - 1) : 1;
+                    const r = Math.round(colors[0].r * (1 - ratio) + colors[colors.length - 1].r * ratio);
+                    const g = Math.round(colors[0].g * (1 - ratio) + colors[colors.length - 1].g * ratio);
+                    const b = Math.round(colors[0].b * (1 - ratio) + colors[colors.length - 1].b * ratio);
+                    return `rgb(${r}, ${g}, ${b})`;
+                });
+
 
                 ranked.forEach(([name, value], index) => {
                     const percentage = stats.purchases > 0 ? ((value / stats.purchases) * 100).toFixed(1) : '0.0';
@@ -934,7 +967,7 @@
                     const bar = document.createElement('div');
                     bar.className = 'h-4 rounded-full';
                     bar.style.width = `${barWidth}%`;
-                    bar.style.backgroundColor = colors[index % colors.length];
+                    bar.style.backgroundColor = gradientColors[index];
 
                     const valueSpan = document.createElement('span');
                     valueSpan.className = 'ml-3 w-28 text-left text-indigo-200';
@@ -1115,7 +1148,6 @@ ${dataSummary}
                 appContainer.classList.remove('hidden');
                 
                 // Firebase Initialization
-                const firebaseConfig = JSON.parse(__firebase_config);
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);
