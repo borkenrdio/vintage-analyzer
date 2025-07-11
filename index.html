@@ -1148,12 +1148,20 @@ ${dataSummary}
                 appContainer.classList.remove('hidden');
                 
                 // Firebase Initialization
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
+                try {
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
+                    console.log("Firebase initialized successfully. DB instance:", db);
+                } catch (e) {
+                    console.error("Firebase initialization failed:", e);
+                    loginErrorMessage.textContent = 'Firebaseの接続情報の初期化に失敗しました。';
+                    return;
+                }
                 
                 signInAnonymously(auth).then((userCredential) => {
                     userId = userCredential.user.uid;
+                    console.log("Signed in anonymously with UID:", userId);
                     loadSavedFiles();
                     loadSettings();
                     showPage('analytic-page');
@@ -1168,54 +1176,68 @@ ${dataSummary}
         });
         
         async function loadData(docId) {
-            const docRef = doc(db, "artifacts", appId, "users", userId, "datasets", docId);
-            const docSnap = await getDoc(docRef);
+            try {
+                const docRef = doc(db, "artifacts", appId, "users", userId, "datasets", docId);
+                const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                salesData = parseSalesCSV(data.salesDataRaw || "");
-                visitorData = parseVisitorCSV(data.visitorDataRaw || "");
-                runAnalysisAndDisplay();
-            } else {
-                console.error("No such document!");
-                importStatus.textContent = "選択されたデータの読み込みに失敗しました。";
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    salesData = parseSalesCSV(data.salesDataRaw || "");
+                    visitorData = parseVisitorCSV(data.visitorDataRaw || "");
+                    runAnalysisAndDisplay();
+                } else {
+                    console.error("No such document!");
+                    importStatus.textContent = "選択されたデータの読み込みに失敗しました。";
+                    importStatus.classList.add('text-red-400');
+                }
+            } catch(e) {
+                console.error("Error loading data:", e);
+                importStatus.textContent = "データ読み込み中にエラーが発生しました。";
                 importStatus.classList.add('text-red-400');
             }
         }
 
         function loadSavedFiles() {
-            const q = query(collection(db, "artifacts", appId, "users", userId, "datasets"));
-            onSnapshot(q, (querySnapshot) => {
-                savedFilesList.innerHTML = '';
-                if (querySnapshot.empty) {
-                    savedFilesList.innerHTML = '<p class="text-center text-indigo-300">保存されたデータはありません。</p>';
-                    return;
-                }
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const div = document.createElement('div');
-                    div.className = 'flex justify-between items-center p-2 hover:bg-indigo-700 rounded-md';
-                    
-                    const labelSpan = document.createElement('span');
-                    labelSpan.textContent = data.label;
-                    labelSpan.className = 'cursor-pointer flex-grow text-indigo-200';
-                    labelSpan.onclick = () => loadData(doc.id);
-                    
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.textContent = '削除';
-                    deleteBtn.className = 'text-xs bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700';
-                    deleteBtn.onclick = async (e) => {
-                        e.stopPropagation();
-                        // A custom modal should be used here instead of confirm()
-                        // For simplicity, we'll proceed without confirmation for now.
-                        await deleteDoc(doc.ref);
-                    };
-                    
-                    div.appendChild(labelSpan);
-                    div.appendChild(deleteBtn);
-                    savedFilesList.appendChild(div);
+            try {
+                const q = query(collection(db, "artifacts", appId, "users", userId, "datasets"));
+                onSnapshot(q, (querySnapshot) => {
+                    savedFilesList.innerHTML = '';
+                    if (querySnapshot.empty) {
+                        savedFilesList.innerHTML = '<p class="text-center text-indigo-300">保存されたデータはありません。</p>';
+                        return;
+                    }
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const div = document.createElement('div');
+                        div.className = 'flex justify-between items-center p-2 hover:bg-indigo-700 rounded-md';
+                        
+                        const labelSpan = document.createElement('span');
+                        labelSpan.textContent = data.label;
+                        labelSpan.className = 'cursor-pointer flex-grow text-indigo-200';
+                        labelSpan.onclick = () => loadData(doc.id);
+                        
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.textContent = '削除';
+                        deleteBtn.className = 'text-xs bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700';
+                        deleteBtn.onclick = async (e) => {
+                            e.stopPropagation();
+                            // A custom modal should be used here instead of confirm()
+                            // For simplicity, we'll proceed without confirmation for now.
+                            await deleteDoc(doc.ref);
+                        };
+                        
+                        div.appendChild(labelSpan);
+                        div.appendChild(deleteBtn);
+                        savedFilesList.appendChild(div);
+                    });
+                }, (error) => {
+                    console.error("Error with onSnapshot:", error);
+                    savedFilesList.innerHTML = '<p class="text-center text-red-400">データリストの読み込みに失敗しました。</p>';
                 });
-            });
+            } catch(e) {
+                 console.error("Error setting up snapshot listener:", e);
+                 savedFilesList.innerHTML = '<p class="text-center text-red-400">データ監視の開始に失敗しました。</p>';
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
