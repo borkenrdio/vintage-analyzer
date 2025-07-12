@@ -60,4 +60,1589 @@
         <div id="login-page" class="min-h-screen flex items-center justify-center bg-indigo-900 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">
             <div>
-                <h2 class="mt-6 text-center text-3
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
+                    VINTAGE ANALYZER
+                </h2>
+            </div>
+            <div class="mt-8 space-y-6 bg-indigo-800 p-8 shadow-2xl rounded-2xl">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="user-id-input" class="sr-only">ユーザーID</label>
+                        <input id="user-id-input" name="userid" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-3 bg-indigo-700 border border-indigo-600 placeholder-gray-400 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="ユーザーID">
+                    </div>
+                    <div>
+                        <label for="password-login-input" class="sr-only">パスワード</label>
+                        <input id="password-login-input" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-3 bg-indigo-700 border border-indigo-600 placeholder-gray-400 text-white rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="パスワード">
+                    </div>
+                </div>
+
+      _2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>AI Report</span>
+                    </a>
+                    <a href="#" id="nav-setting" class="nav-link px-4 py-2.5 rounded-md text-sm font-medium text-indigo-200 hover:bg-indigo-700 hover:text-white flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>Setting</span>
+                    </a>
+                </nav>
+            </aside>
+
+                        <div class="flex-grow flex flex-col overflow-hidden">
+                <main class="flex-grow p-4 md:p-8 overflow-y-auto custom-scrollbar">
+                                        <div id="import-page" class="page hidden">
+                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
+                                <h2 class="text-xl font-bold mb-4 text-white">新規データ追加</h2>
+                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                        <div id="sales-upload-container">
+                                        <h3 class="text-lg font-semibold mb-2 text-indigo-200">売上データ</h3>
+                                        <div id="sales-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors">
+                                            <div class="flex flex-col items-center justify-center">
+                                                <svg class="w-10 h-10 text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 17.25z" /></svg>
+                                                <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
+                                                <input type="file" id="sales-file-input" class="hidden" accept=".csv" multiple>
+                                            </div>
+                                        </div>
+                                        <div id="sales-file-info" class="mt-2 text-center text-xs text-indigo-300"></div>
+                                    </div>
+                                                                        <div id="visitor-upload-container">
+                                        <h3 class="text-lg font-semibold mb-2 text-indigo-200">来店客数データ</h3>
+                                        <div id="visitor-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors">
+                                            <div class="flex flex-col items-center justify-center">
+                                                 <svg class="w-10 h-10 text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.375 3.375 0 0110.5 12h3c1.414 0 2.695.606 3.586 1.595M15.11 5.46A9.037 9.037 0 0112 3c-1.605 0-3.097.49-4.388 1.342M12 21a9.037 9.037 0 01-4.388-1.342" /></svg>
+                                                <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
+                                                <input type="file" id="visitor-file-input" class="hidden" accept=".csv" multiple>
+              _2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>AI Report</span>
+                    </a>
+                    <a href="#" id="nav-setting" class="nav-link px-4 py-2.5 rounded-md text-sm font-medium text-indigo-200 hover:bg-indigo-700 hover:text-white flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>Setting</span>
+                    </a>
+                </nav>
+            </aside>
+
+                        <div class="flex-grow flex flex-col overflow-hidden">
+                <main class="flex-grow p-4 md:p-8 overflow-y-auto custom-scrollbar">
+                                        <div id="import-page" class="page hidden">
+                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
+                                <h2 class="text-xl font-bold mb-4 text-white">新規データ追加</h2>
+                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                        <div id="sales-upload-container">
+                                        <h3 class="text-lg font-semibold mb-2 text-indigo-200">売上データ</h3>
+                                        <div id="sales-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors">
+                                            <div class="flex flex-col items-center justify-center">
+                                                <svg class="w-10 h-10 text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 17.25z" /></svg>
+                                                <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
+                                          -6 0a3 3 0 016 0z" />
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                             <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button id="save-settings-btn" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        保存する
+                                    </button>
+                                </div>
+                                <p id="settings-success-message" class="text-green-400 text-sm text-center"></p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // ▼▼▼▼▼ ここにFirebaseからコピーした接続情報を貼り付け ▼▼▼▼▼
+        const firebaseConfig = {
+          apiKey: "AIzaSyAcVcWgUBQHw33bLCSWzqzIXOvs0szKMvo",
+          authDomain: "vintage-analyzer-f4111.firebaseapp.com",
+          projectId: "vintage-analyzer-f4111",
+          storageBucket: "vintage-analyzer-f4111.appspot.com",
+          messagingSenderId: "207991861674",
+          appId: "1:207991861674:web:a32f87d4ccb88437f7bbd3",
+          measurementId: "G-13BZQ8VXCQ"
+        };
+        // ▲▲▲▲▲ ここまで ▲▲▲▲▲
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, addDoc, collection, query, getDocs, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // DOM Elements
+        const loginPage = document.getElementById('login-page');
+        const appContainer = document.getElementById('app-container');
+        const userIdInput = document.getElementById('user-id-input');
+        const passwordLoginInput = document.getElementById('password-login-input');
+        const loginBtn = document.getElementById('login-btn');
+        const loginErrorMessage = document.getElementById('login-error-message');
+
+        const salesDropZone = document.getElementById('sales-drop-zone');
+        const salesFileInput = document.getElementById('sales-file-input');
+        const salesFileInfo = document.getElementById('sales-file-info');
+        const visitorDropZone = document.getElementById('visitor-drop-zone');
+        const visitorFileInput = document.getElementById('visitor-file-input');
+        const visitorFileInfo = document.getElementById('visitor-file-info');
+        const uploadBtn = document.getElementById('upload-btn');
+        const savedFilesList = document.getElementById('saved-files-list');
+        const importStatus = document.getElementById('import-status');
+        
+        const storeNameDisplay = document.getElementById('display-store-name');
+        const storeNameInput = document.getElementById('store-name-input');
+        const addressInput = document.getElementById('address-input');
+        const tsuboInput = document.getElementById('tsubo-input');
+        const passwordInput = document.getElementById('password-input');
+        const saveSettingsBtn = document.getElementById('save-settings-btn');
+        const settingsSuccessMessage = document.getElementById('settings-success-message');
+        const togglePasswordVisibility = document.getElementById('toggle-password-visibility');
+        const eyeIcon = document.getElementById('eye-icon');
+        const eyeSlashIcon = document.getElementById('eye-slash-icon');
+        const generateReportBtn = document.getElementById('generate-report-btn');
+        const reportContainer = document.getElementById('report-container');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const summaryTitle = document.getElementById('summary-title');
+
+        let chartInstances = {};
+        let salesData = [];
+        let visitorData = [];
+        let analysisResultCache = null;
+        let currentSalesFiles = [];
+        let currentVisitorFiles = [];
+
+        let db, auth, userId;
+        const appId = "vintage-analyzer";
+
+        // --- ログイン情報 ---
+        const users = {
+            "demo01": "password1",
+            "demo02": "password2"
+        };
+
+        // --- カテゴリコードの変換マップ ---
+        const oldTagMap = { '10': '半袖Ｔシャツ', '11': '長袖Ｔシャツ', '12': '半袖ポロシャツ', '13': '長袖ポロシャツ', '14': '半袖シャツ', '15': '長袖シャツ', '16': '半袖その他・ベスト', '17': '長袖その他', '30': 'パンツ', '31': 'ショートパンツ', '32': 'スカート', '40': 'トレーナー・パーカー・フリース', '41': 'カーディガン・ニット', '50': 'コート', '51': 'ジャケット・スーツ', '52': '革・ダウン・スタジャン', '53': 'アウターその他', '54': 'ナイロンジャケット', '60': 'オーバーオール・ワンピース', '61': 'ミリタリー・アウトドア', '62': 'スポーツウェア', 'FF': 'その他' };
+        const newTagMap = { '0': 'Tシャツ', '1': 'シャツ/半袖', '2': 'シャツ/長袖', '3': 'ポロシャツ/半袖', '4': 'ポロシャツ/長袖', '5': 'ロングTシャツ', '6': 'ナイロン トラックジャケット', '7': 'ライトアウター', '8': 'ネルシャツ', '9': 'スウェット', 'A': 'パーカー', 'B': 'ハーフジップ', 'C': 'フリース', 'D': 'ヘビーアウター', 'E': 'パンツ', 'F': 'その他/小物' };
+        
+        function translateCategoryCode(code, dateTime) {
+            if (!code) return 'カテゴリなし';
+            const upperCode = code.toUpperCase();
+            if (upperCode === 'F6D') return 'ワンピース';
+            let useOldTagLogicOnly = false;
+            if (dateTime) {
+                const datePart = dateTime.split(' ')[0];
+                const dateObj = new Date(datePart.replace(/[-.]/g, '/'));
+                if (!isNaN(dateObj.getTime())) {
+                    const oldTagStartDate = new Date('2024-09-01');
+                    const oldTagEndDate = new Date('2025-05-01');
+                    if (dateObj >= oldTagStartDate && dateObj < oldTagEndDate) {
+                        useOldTagLogicOnly = true;
+                    }
+                }
+            }
+            let processedCode = upperCode;
+            if (useOldTagLogicOnly) {
+                const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
+                if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+            } else {
+                 if (processedCode.length === 2 && /^[0-9A-F]+$/.test(processedCode)) {
+                     processedCode = '0' + processedCode;
+                 }
+                 const newTagKey = processedCode.substring(0, 1);
+                 if (newTagMap[newTagKey]) return newTagMap[newTagKey];
+                 const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
+                 if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+            }
+            return code;
+        }
+
+        // --- File Handling ---
+        const createDropZone = (zone, input, info, fileStore) => {
+            zone.addEventListener('click', () => input.click());
+            zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('border-indigo-500', 'bg-indigo-600'); });
+            zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); });
+            const setFiles = (files) => {
+                fileStore.length = 0;
+                Array.from(files).forEach(f => fileStore.push(f));
+                info.textContent = `${files.length}個のファイルを選択中`;
+            }
+            zone.addEventListener('drop', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); setFiles(e.dataTransfer.files); });
+            input.addEventListener('change', (e) => { setFiles(e.target.files); });
+        };
+
+        createDropZone(salesDropZone, salesFileInput, salesFileInfo, currentSalesFiles);
+        createDropZone(visitorDropZone, visitorFileInput, visitorFileInfo, currentVisitorFiles);
+        
+        async function uploadAndSaveFiles() {
+            if (currentSalesFiles.length === 0 && currentVisitorFiles.length === 0) {
+                importStatus.textContent = "アップロードするファイルを選択してください。";
+                importStatus.classList.add('text-red-400');
+                return;
+            }
+
+            importStatus.textContent = 'アップロード処理中...';
+            importStatus.classList.remove('text-red-400', 'text-green-400');
+
+            const readFileAsText = (file) => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = (e) => reject(new Error(`File read error: ${e}`));
+                    reader.readAsText(file, 'Shift_JIS');
+                });
+            };
+
+            try {
+                let salesCsvText = "";
+                if (currentSalesFiles.length > 0) {
+                    const salesTexts = await Promise.all(currentSalesFiles.map(readFileAsText));
+                    salesCsvText = salesTexts.join('\n');
+                }
+                
+                let visitorCsvText = "";
+                if (currentVisitorFiles.length > 0) {
+                    const visitorTexts = await Promise.all(currentVisitorFiles.map(readFileAsText));
+                    visitorCsvText = visitorTexts.join('\n');
+                }
+
+                const tempSalesData = parseSalesCSV(salesCsvText || "");
+                const tempVisitorData = parseVisitorCSV(visitorCsvText || "");
+
+      .458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                             <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button id="save-settings-btn" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        保存する
+                                    </button>
+                                </div>
+                                <p id="settings-success-message" class="text-green-400 text-sm text-center"></p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, addDoc, collection, query, getDocs, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // DOM Elements
+        const loginPage = document.getElementById('login-page');
+        const appContainer = document.getElementById('app-container');
+        const userIdInput = document.getElementById('user-id-input');
+        const passwordLoginInput = document.getElementById('password-login-input');
+        const loginBtn = document.getElementById('login-btn');
+        const loginErrorMessage = document.getElementById('login-error-message');
+
+        const salesDropZone = document.getElementById('sales-drop-zone');
+        const salesFileInput = document.getElementById('sales-file-input');
+        const salesFileInfo = document.getElementById('sales-file-info');
+        const visitorDropZone = document.getElementById('visitor-drop-zone');
+        const visitorFileInput = document.getElementById('visitor-file-input');
+        const visitorFileInfo = document.getElementById('visitor-file-info');
+        const uploadBtn = document.getElementById('upload-btn');
+        const savedFilesList = document.getElementById('saved-files-list');
+        const importStatus = document.getElementById('import-status');
+        
+        const storeNameDisplay = document.getElementById('display-store-name');
+        const storeNameInput = document.getElementById('store-name-input');
+        const addressInput = document.getElementById('address-input');
+        const tsuboInput = document.getElementById('tsubo-input');
+        const passwordInput = document.getElementById('password-input');
+        const saveSettingsBtn = document.getElementById('save-settings-btn');
+        const settingsSuccessMessage = document.getElementById('settings-success-message');
+        const togglePasswordVisibility = document.getElementById('toggle-password-visibility');
+        const eyeIcon = document.getElementById('eye-icon');
+        const eyeSlashIcon = document.getElementById('eye-slash-icon');
+        const generateReportBtn = document.getElementById('generate-report-btn');
+        const reportContainer = document.getElementById('report-container');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const summaryTitle = document.getElementById('summary-title');
+
+        let chartInstances = {};
+        let salesData = [];
+        let visitorData = [];
+        let analysisResultCache = null;
+        let currentSalesFiles = [];
+        let currentVisitorFiles = [];
+
+        let db, auth, userId;
+        const appId = "vintage-analyzer";
+
+        // --- ログイン情報 ---
+        const users = {
+            "demo01": "password1",
+            "demo02": "password2"
+        };
+
+        // --- カテゴリコードの変換マップ ---
+        const oldTagMap = { '10': '半袖Ｔシャツ', '11': '長袖Ｔシャツ', '12': '半袖ポロシャツ', '13': '長袖ポロシャツ', '14': '半袖シャツ', '15': '長袖シャツ', '16': '半袖その他・ベスト', '17': '長袖その他', '30': 'パンツ', '31': 'ショートパンツ', '32': 'スカート', '40': 'トレーナー・パーカー・フリース', '41': 'カーディガン・ニット', '50': 'コート', '51': 'ジャケット・スーツ', '52': '革・ダウン・スタジャン', '53': 'アウターその他', '54': 'ナイロンジャケット', '60': 'オーバーオール・ワンピース', '61': 'ミリタリー・アウトドア', '62': 'スポーツウェア', 'FF': 'その他' };
+        const newTagMap = { '0': 'Tシャツ', '1': 'シャツ/半袖', '2': 'シャツ/長袖', '3': 'ポロシャツ/半袖', '4': 'ポロシャツ/長袖', '5': 'ロングTシャツ', '6': 'ナイロン トラックジャケット', '7': 'ライトアウター', '8': 'ネルシャツ', '9': 'スウェット', 'A': 'パーカー', 'B': 'ハーフジップ', 'C': 'フリース', 'D': 'ヘビーアウター', 'E': 'パンツ', 'F': 'その他/小物' };
+        
+        function translateCategoryCode(code, dateTime) {
+            if (!code) return 'カテゴリなし';
+            const upperCode = code.toUpperCase();
+            if (upperCode === 'F6D') return 'ワンピース';
+            let useOldTagLogicOnly = false;
+            if (dateTime) {
+                const datePart = dateTime.split(' ')[0];
+                const dateObj = new Date(datePart.replace(/[-.]/g, '/'));
+                if (!isNaN(dateObj.getTime())) {
+                    const oldTagStartDate = new Date('2024-09-01');
+                    const oldTagEndDate = new Date('2025-05-01');
+                    if (dateObj >= oldTagStartDate && dateObj < oldTagEndDate) {
+                        useOldTagLogicOnly = true;
+                    }
+                }
+            }
+            let processedCode = upperCode;
+            if (useOldTagLogicOnly) {
+                const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
+                if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+            } else {
+                 if (processedCode.length === 2 && /^[0-9A-F]+$/.test(processedCode)) {
+                     processedCode = '0' + processedCode;
+                 }
+                 const newTagKey = processedCode.substring(0, 1);
+                 if (newTagMap[newTagKey]) return newTagMap[newTagKey];
+                 const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
+                 if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+            }
+            return code;
+        }
+
+        // --- File Handling ---
+        const createDropZone = (zone, input, info, fileStore) => {
+            zone.addEventListener('click', () => input.click());
+            zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('border-indigo-500', 'bg-indigo-600'); });
+            zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); });
+            const setFiles = (files) => {
+                fileStore.length = 0;
+                Array.from(files).forEach(f => fileStore.push(f));
+                info.textContent = `${files.length}個のファイルを選択中`;
+            }
+            zone.addEventListener('drop', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); setFiles(e.dataTransfer.files); });
+            input.addEventListener('change', (e) => { setFiles(e.target.files); });
+        };
+
+        createDropZone(salesDropZone, salesFileInput, salesFileInfo, currentSalesFiles);
+        createDropZone(visitorDropZone, visitorFileInput, visitorFileInfo, currentVisitorFiles);
+        
+        async function uploadAndSaveFiles() {
+            if (currentSalesFiles.length === 0 && currentVisitorFiles.length === 0) {
+                importStatus.textContent = "アップロードするファイルを選択してください。";
+                importStatus.classList.add('text-red-400');
+                return;
+            }
+
+            importStatus.textContent = 'アップロード処理中...';
+            importStatus.classList.remove('text-red-400', 'text-green-400');
+
+            const readFileAsText = (file) => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = (e) => reject(new Error(`File read error: ${e}`));
+                    reader.readAsText(file, 'Shift_JIS');
+                });
+            };
+
+            try {
+                let salesCsvText = "";
+                if (currentSalesFiles.length > 0) {
+                    const salesTexts = await Promise.all(currentSalesFiles.map(readFileAsText));
+                    salesCsvText = salesTexts.join('\n');
+                }
+                
+                let visitorCsvText = "";
+                if (currentVisitorFiles.length > 0) {
+                    const visitorTexts = await Promise.all(currentVisitorFiles.map(readFileAsText));
+                    visitorCsvText = visitorTexts.join('\n');
+                }
+
+                const tempSalesData = parseSalesCSV(salesCsvText || "");
+                const tempVisitorData = parseVisitorCSV(visitorCsvText || "");
+
+                if (tempSalesData.length === 0 && tempVisitorData.length === 0) {
+                    throw new Error("CSVファイルから有効なデータを読み取れませんでした。");
+                }
+                
+                const firstSaleDate = tempSalesData.length > 0 ? parseDate(tempSalesData[0].dateTime) : null;
+                const firstVisitorDate = tempVisitorData.length > 0 ? parseDate(tempVisitorData[0].date) : null;
+                
+                const representativeDate = firstSaleDate || firstVisitorDate;
+                if (!representativeDate) {
+                    throw new Error("データから有効な日付を取得できませんでした。");
+                }
+                
+                const year = representativeDate.getFullYear();
+                const month = representativeDate.getMonth() + 1;
+                
+                const docId = `${year}-${String(month).padStart(2, '0')}`;
+                const label = `${year}年${month}月データ`;
+                
+                const docRef = doc(db, "artifacts", appId, "users", userId, "datasets", docId);
+                const docSnap = await getDoc(docRef);
+                const existingData = docSnap.exists() ? docSnap.data() : {};
+
+                const dataToSave = {
+                    label: label,
+                    salesDataRaw: salesCsvText || existingData.salesDataRaw || "",
+                    visitorDataRaw: visitorCsvText || existingData.visitorDataRaw || "",
+                    createdAt: new Date()
+                };
+
+                await setDoc(docRef, dataToSave); 
+                
+                importStatus.textContent = `「${label}」を保存・更新しました。分析結果を表示します...`;
+                importStatus.classList.add('text-green-400');
+                
+                salesData = parseSalesCSV(dataToSave.salesDataRaw);
+                visitorData = parseVisitorCSV(dataToSave.visitorDataRaw);
+                runAnalysisAndDisplay();
+                
+                currentSalesFiles.length = 0;
+                currentVisitorFiles.length = 0;
+                salesFileInfo.textContent = '';
+                visitorFileInfo.textContent = '';
+
+            } catch (error) {
+                console.error("Upload failed:", error);
+                importStatus.textContent = `エラーが発生しました: ${error.message}`;
+                importStatus.classList.add('text-red-400');
+            }
+        }
+        
+        uploadBtn.addEventListener('click', uploadAndSaveFiles);
+
+        function parseSalesCSV(csvText) {
+            const lines = csvText.trim().split(/\r?\n/);
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                if (values.length <= 6) continue;
+                const dateTimeStr = values[2]?.trim();
+                if (!dateTimeStr) continue;
+                const priceString = values[6] ? String(values[6]).replace(/[^0-9]/g, '') : '';
+                const price = parseInt(priceString, 10);
+                if (isNaN(price)) continue;
+                data.push({ dateTime: dateTimeStr, category: values[4]?.trim(), price: price });
+            }
+            return data;
+        }
+
+        function parseVisitorCSV(csvText) {
+            const lines = csvText.trim().split(/\r?\n/);
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                if (values.length <= 8) continue;
+                const dateStr = values[2]?.trim();
+                if (!dateStr) continue;
+                const visitorCount = parseInt(String(values[8]).replace(/[^0-9]/g, ''), 10);
+                if (isNaN(visitorCount)) continue;
+                data.push({ date: dateStr, totalVisitors: visitorCount });
+            }
+            return data;
+        }
+
+        function getFridayWeekStartDate(date) {
+            const dayOfWeek = date.getDay();
+            const offset = (dayOfWeek - 5 + 7) % 7;
+            const weekStart = new Date(date);
+            weekStart.setDate(date.getDate() - offset);
+            const year = weekStart.getFullYear();
+            const month = (weekStart.getMonth() + 1).toString().padStart(2, '0');
+            const day = weekStart.getDate().toString().padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // --- Analysis ---
+        const parseDate = (dateString) => {
+            if (!dateString) return null;
+            const cleanDateString = dateString.trim().replace(/^"|"$/g, '');
+
+            if (/^\d{8}(\d{2})?$/.test(cleanDateString)) {
+                const year = parseInt(cleanDateString.substring(0, 4), 10);
+                const month = parseInt(cleanDateString.substring(4, 6), 10) - 1;
+                const day = parseInt(cleanDateString.substring(6, 8), 10);
+                const hours = cleanDateString.length >= 10 ? parseInt(cleanDateString.substring(8, 10), 10) : 0;
+                const dateObj = new Date(year, month, day, hours);
+                if (!isNaN(dateObj.getTime())) return dateObj;
+            }
+
+            const parts = cleanDateString.match(/(\d{4})[-.\/](\d{1,2})[-.\/](\d{1,2})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?/);
+            if (parts) {
+                const year = parseInt(parts[1], 10);
+                const month = parseInt(parts[2], 10) - 1;
+                const day = parseInt(parts[3], 10);
+                const hours = parts[4] ? parseInt(parts[4], 10) : 0;
+                const minutes = parts[5] ? parseInt(parts[5], 10) : 0;
+                const seconds = parts[6] ? parseInt(parts[6], 10) : 0;
+                const dateObj = new Date(year, month, day, hours, minutes, seconds);
+                if (!isNaN(dateObj.getTime())) return dateObj;
+            }
+
+            return null;
+        };
+
+        function analyzeData(sales, visitors) {
+            const dailyData = {};
+            
+            sales.forEach(item => {
+                const dateObj = parseDate(item.dateTime);
+                if (!dateObj || isNaN(dateObj.getTime())) {
+                    console.error("Invalid date format found in sales data:", item.dateTime);
+                    return;
+                }
+                const datePart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getDate()).padStart(2, '0')}`;
+                
+                if (!dailyData[datePart]) {
+                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+                }
+                
+                const category = translateCategoryCode(item.category, item.dateTime);
+                dailyData[datePart].sales += item.price;
+                dailyData[datePart].purchases += 1;
+                dailyData[datePart].categoryCounts[category] = (dailyData[datePart].categoryCounts[category] || 0) + 1;
+                dailyData[datePart].customerTransactions.add(item.dateTime);
+            });
+
+            visitors.forEach(item => {
+                const dateObj = parseDate(item.date);
+                if (!dateObj || isNaN(dateObj.getTime())) {
+                    console.error("Invalid date format found in visitor data:", item.date);
+                    return;
+                }
+                const datePart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getDate()).padStart(2, '0')}`;
+                if (!dailyData[datePart]) {
+                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+                }
+                dailyData[datePart].visitors += item.totalVisitors;
+            });
+
+            const weeklyStats = {};
+            const monthlyStats = {};
+
+            for (const datePart in dailyData) {
+                const dayData = dailyData[datePart];
+                const dateObj = new Date(datePart);
+                const weekStartDate = getFridayWeekStartDate(dateObj);
+                const monthPart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}`;
+
+                if (!weeklyStats[weekStartDate]) weeklyStats[weekStartDate] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+                if (!monthlyStats[monthPart]) monthlyStats[monthPart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+
+                weeklyStats[weekStartDate].sales += dayData.sales;
+                weeklyStats[weekStartDate].purchases += dayData.purchases;
+                weeklyStats[weekStartDate].visitors += dayData.visitors;
+                dayData.customerTransactions.forEach(t => weeklyStats[weekStartDate].customerTransactions.add(t));
+                for(const cat in dayData.categoryCounts) weeklyStats[weekStartDate].categoryCounts[cat] = (weeklyStats[weekStartDate].categoryCounts[cat] || 0) + dayData.categoryCounts[cat];
+
+                monthlyStats[monthPart].sales += dayData.sales;
+                monthlyStats[monthPart].purchases += dayData.purchases;
+                monthlyStats[monthPart].visitors += dayData.visitors;
+                dayData.customerTransactions.forEach(t => monthlyStats[monthPart].customerTransactions.add(t));
+                for(const cat in dayData.categoryCounts) monthlyStats[monthPart].categoryCounts[cat] = (monthlyStats[monthPart].categoryCounts[cat] || 0) + dayData.categoryCounts[cat];
+            }
+            
+            const calculateDerivedMetrics = (period) => {
+                const sortedKeys = Object.keys(period).sort((a, b) => new Date(a) - new Date(b));
+                sortedKeys.forEach((key, index) => {
+                    const s = period[key];
+                    s.customerCount = s.customerTransactions.size;
+                    s.conversionRate = s.visitors > 0 ? (s.customerCount / s.visitors) * 100 : 0;
+                    s.avgItemsPerCustomer = s.customerCount > 0 ? s.purchases / s.customerCount : 0;
+                    s.averagePrice = s.purchases > 0 ? s.sales / s.purchases : 0;
+                    s.avgCustomerSpend = s.customerCount > 0 ? s.sales / s.customerCount : 0;
+
+                    if (index > 0) {
+                        const prevKey = sortedKeys[index - 1];
+                        const prevS = period[prevKey];
+                        Object.keys(s).forEach(metric => {
+                            if (typeof s[metric] === 'number' && typeof prevS[metric] === 'number' && prevS[metric] !== 0) {
+                                s[`${metric}Change`] = ((s[metric] - prevS[metric]) / prevS[metric]) * 100;
+                            }
+                        });
+                    }
+                });
+            };
+            
+            calculateDerivedMetrics(dailyData);
+            calculateDerivedMetrics(weeklyStats);
+            calculateDerivedMetrics(monthlyStats);
+            
+            const totalItems = sales.length;
+            const customerCount = new Set(sales.map(s => s.dateTime)).size;
+            const totalRevenue = sales.reduce((sum, item) => sum + item.price, 0);
+            const totalVisitors = visitors.reduce((sum, item) => sum + item.totalVisitors, 0);
+
+            return {
+                totalRevenue, totalItems, customerCount,
+                visitorCount: totalVisitors,
+                conversionRate: totalVisitors > 0 ? (customerCount / totalVisitors) * 100 : 0,
+                avgCustomerSpend: customerCount > 0 ? totalRevenue / customerCount : 0,
+                averagePrice: totalItems > 0 ? totalRevenue / totalItems : 0,
+                avgItemsPerCustomer: customerCount > 0 ? totalItems / customerCount : 0,
+                daily: dailyData, weekly: weeklyStats, monthly: monthlyStats
+            };
+        }
+
+        function runAnalysisAndDisplay() {
+            Object.values(chartInstances).forEach(chart => chart.destroy());
+            chartInstances = {};
+
+            analysisResultCache = analyzeData(salesData, visitorData);
+            
+            showPage('analytic-page');
+            showTab('tab-daily');
+        }
+        
+        const createChart = (canvasId, options) => {
+            const canvas = document.getElementById(canvasId);
+            const container = canvas.parentElement;
+            let noDataMessage = container.querySelector('.no-data-message');
+            if (!noDataMessage) {
+                noDataMessage = document.createElement('div');
+                noDataMessage.className = 'no-data-message';
+                container.appendChild(noDataMessage);
+            }
+
+            if (!options || !options.data || !options.data.labels || options.data.labels.length === 0) {
+                canvas.style.display = 'none';
+                noDataMessage.style.display = 'flex';
+                if (chartInstances[canvasId]) {
+                    chartInstances[canvasId].destroy();
+                    delete chartInstances[canvasId];
+                }
+            } else {
+                canvas.style.display = 'block';
+                noDataMessage.style.display = 'none';
+                if (chartInstances[canvasId]) {
+                    chartInstances[canvasId].destroy();
+                }
+                chartInstances[canvasId] = new Chart(canvas.getContext('2d'), options);
+            }
+        };
+
+        // --- UI Control ---
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function showPage(pageId) {
+            pages.forEach(page => page.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+            navLinks.forEach(link => link.classList.remove('active'));
+            const navId = `nav-${pageId.replace('-page', '')}`;
+            const activeLink = document.getElementById(navId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        function updateSummaryDashboard(data, title) {
+            summaryTitle.textContent = title;
+            
+            const metrics = {
+                'total-revenue': { value: data.sales || data.totalRevenue || 0, prefix: '¥', change: data.salesChange },
+                'total-items': { value: data.purchases || data.totalItems || 0, change: data.purchasesChange },
+                'customer-count': { value: data.customerCount || 0, change: data.customerCountChange },
+                'visitor-count': { value: data.visitors || data.visitorCount || 0, change: data.visitorsChange },
+                'conversion-rate': { value: data.conversionRate || 0, suffix: '%', toFixed: 1, change: data.conversionRateChange, isPercentage: true },
+                'avg-customer-spend': { value: data.avgCustomerSpend || 0, prefix: '¥', change: data.avgCustomerSpendChange },
+                'average-price': { value: data.averagePrice || 0, prefix: '¥', change: data.averagePriceChange },
+                'avg-items-per-customer': { value: data.avgItemsPerCustomer || 0, suffix: ' 点', toFixed: 1, change: data.avgItemsPerCustomerChange },
+            };
+
+            for (const id in metrics) {
+                const metric = metrics[id];
+                const valueEl = document.getElementById(id);
+                const changeEl = document.getElementById(`${id}-change`);
+                
+                let formattedValue = typeof metric.value === 'number' ? Math.round(metric.value).toLocaleString() : metric.value;
+                if(metric.toFixed) formattedValue = metric.value.toFixed(metric.toFixed);
+
+                valueEl.textContent = `${metric.prefix || ''}${formattedValue}${metric.suffix || ''}`;
+
+                if (metric.change !== undefined && metric.change !== null) {
+                    const isPositive = metric.change >= 0;
+                    const colorClass = isPositive ? 'text-green-400' : 'text-red-400';
+                    const arrow = isPositive ? '↑' : '↓';
+                    const changeValue = metric.isPercentage ? metric.change.toFixed(1) : Math.abs(metric.change).toFixed(1);
+
+                    changeEl.innerHTML = `<span class="${colorClass}">${arrow} ${changeValue}%</span>`;
+                    changeEl.classList.remove('hidden');
+                } else {
+                    changeEl.innerHTML = '';
+                    changeEl.classList.add('hidden');
+                }
+            }
+        }
+
+        function showTab(tabId) {
+            tabContents.forEach(content => content.classList.add('hidden'));
+            const contentId = `${tabId.replace('tab-', '')}-tab-content`;
+            const contentElement = document.getElementById(contentId);
+            if (contentElement) contentElement.classList.remove('hidden');
+            tabLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.getElementById(tabId);
+            if(activeLink) activeLink.classList.add('active');
+            
+            requestAnimationFrame(() => {
+                const result = analysisResultCache;
+                if (!result) {
+                    updateSummaryDashboard({}, "データがありません");
+                    return;
+                };
+                const chartColor = 'rgba(224, 231, 255, 0.7)';
+                const chartGridColor = 'rgba(199, 210, 254, 0.2)';
+                const chartOptions = {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    layout: { padding: 10 },
+                    scales: {
+                        y: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } },
+                        x: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } }
+                    }
+                };
+                const lineChartOptions = (unit = '') => ({
+                    ...chartOptions,
+                    scales: {
+                        y: { ticks: { color: chartColor, callback: v => `${v}${unit}` }, grid: { color: chartGridColor, drawBorder: false } },
+                        x: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } }
+                    }
+                });
+
+                const colors = { sales: '#818cf8', purchases: '#34d399', customers: '#6ee7b7', visitors: '#facc15', conversion: '#f87171', avgItems: '#fbbf24', avgPrice: '#f472b6'};
+                
+                if (tabId === 'tab-daily') {
+                    updateSummaryDashboard(result, "全体サマリー");
+                    const allSortedDays = Object.keys(result.daily).sort((a,b) => new Date(a) - new Date(b));
+                    
+                    createChart('daily-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '売上', data: allSortedDays.map(d => result.daily[d].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('daily-purchase-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '購買数', data: allSortedDays.map(d => result.daily[d].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('daily-customer-count-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '購買客数', data: allSortedDays.map(d => result.daily[d].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+
+                    const firstVisitorDayIndex = allSortedDays.findIndex(day => result.daily[day].visitors > 0);
+                    const visitorDays = firstVisitorDayIndex !== -1 ? allSortedDays.slice(firstVisitorDayIndex) : [];
+
+                    createChart('daily-visitor-count-chart', { type: 'bar', data: { labels: visitorDays, datasets: [{ label: '来店客数', data: visitorDays.map(d => result.daily[d].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('daily-conversion-chart', { type: 'line', data: { labels: visitorDays, datasets: [{ label: '購買率', data: visitorDays.map(d => result.daily[d].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                }
+
+                if (tabId === 'tab-weekly') {
+                    const sortedWeeks = Object.keys(result.weekly).sort((a,b) => new Date(a) - new Date(b));
+                    const latestWeekKey = sortedWeeks[sortedWeeks.length - 1];
+                    const latestWeekData = result.weekly[latestWeekKey];
+                    if(latestWeekData) updateSummaryDashboard(latestWeekData, `最新週のサマリー (${latestWeekKey}〜)`);
+                    
+                    createChart('weekly-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '売上', data: sortedWeeks.map(w => result.weekly[w].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('weekly-purchase-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '購買数', data: sortedWeeks.map(w => result.weekly[w].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('weekly-customer-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '購買客数', data: sortedWeeks.map(w => result.weekly[w].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+                    createChart('weekly-visitor-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '来店客数', data: sortedWeeks.map(w => result.weekly[w].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('weekly-conversion-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '購買率', data: sortedWeeks.map(w => result.weekly[w].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                    createChart('weekly-avg-items-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '平均買上点数', data: sortedWeeks.map(w => result.weekly[w].avgItemsPerCustomer.toFixed(2)), borderColor: colors.avgItems, backgroundColor: colors.avgItems, fill: false, tension: 0.1 }] }, options: lineChartOptions('点') });
+                    createChart('weekly-avg-price-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '平均商品単価', data: sortedWeeks.map(w => Math.round(result.weekly[w].averagePrice)), borderColor: colors.avgPrice, backgroundColor: colors.avgPrice, fill: false, tension: 0.1 }] }, options: lineChartOptions('円') });
+                }
+
+                if (tabId === 'tab-monthly') {
+                    const sortedMonths = Object.keys(result.monthly).sort();
+                    const latestMonthKey = sortedMonths[sortedMonths.length - 1];
+                    const latestMonthData = result.monthly[latestMonthKey];
+                    if(latestMonthData) updateSummaryDashboard(latestMonthData, `最新月のサマリー (${latestMonthKey.replace('/', '年')}月)`);
+
+                    createChart('monthly-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '売上', data: sortedMonths.map(m => result.monthly[m].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('monthly-purchase-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '購買数', data: sortedMonths.map(m => result.monthly[m].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('monthly-customer-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '購買客数', data: sortedMonths.map(m => result.monthly[m].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+                    createChart('monthly-visitor-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '来店客数', data: sortedMonths.map(m => result.monthly[m].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('monthly-conversion-chart', { type: 'line', data: { labels: sortedMonths, datasets: [{ label: '購買率', data: sortedMonths.map(m => result.monthly[m].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                }
+                
+                if (tabId.startsWith('tab-')) {
+                    const period = tabId.replace('tab-', '');
+                    displayRankings(period, result);
+                }
+            }); 
+        }
+        
+        function getCategoryIcon(categoryName) {
+            const iconClass = "h-5 w-5 mr-3 text-pink-300 flex-shrink-0";
+            switch (true) {
+                case /Tシャツ/.test(categoryName):
+                    return `<span class="font-bold text-lg ${iconClass}" style="line-height: 1.25rem; width: 1.25rem; text-align: center;">T</span>`;
+                case /シャツ\/半袖/.test(categoryName):
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.5,6.5H15V4.5a2,2,0,0,0-2-2h-2a2,2,0,0,0-2,2V6.5H6.5a2,2,0,0,0-2,2v8a2,2,0,0,0,2,2h11a2,2,0,0,0,2-2v-8A2,2,0,0,0,17.5,6.5Zm-7-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5V6.5h-3Z"/></svg>`;
+                case /シャツ/.test(categoryName):
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m-4-12l-4 4v10h16V8l-4-4H12z" /></svg>`;
+                case /パンツ/.test(categoryName):
+                     return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 4v16m8-16v16M8 4h8m-8 16h8" /></svg>`;
+                case /ジャケット|アウター|コート|ジャン/.test(categoryName):
+                     return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16M4 12l8-8 8 8M4 12v8h16v-8" /></svg>`;
+                default:
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>`;
+            }
+        }
+
+        function displayRankings(period, result) {
+            const container = document.getElementById(`${period}-category-rankings`);
+            if (!container) return;
+            container.innerHTML = '';
+            const sortedKeys = Object.keys(result[period]).sort((a,b) => new Date(b) - new Date(a));
+            if (sortedKeys.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-400 py-4 col-span-full">表示するデータがありません。</div>`;
+                return;
+            }
+            sortedKeys.forEach(key => {
+                const stats = result[period][key];
+                if(!stats.categoryCounts) return;
+                const ranked = Object.entries(stats.categoryCounts).sort(([,a],[,b]) => b-a).slice(0, 5);
+                if(ranked.length === 0) return;
+
+                let displayKey = key;
+                if (period === 'weekly') {
+                    const startDate = new Date(key.replace(/-/g, '/'));
+                    const endDate = new Date(startDate);
+                    endDate.setDate(startDate.getDate() + 6);
+                    displayKey = `${key.replace(/-/g, '/')} ～ ${(endDate.getMonth() + 1)}/${endDate.getDate()}`;
+                } else if (period === 'monthly') {
+                  .458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                             <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button id="save-settings-btn" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        保存する
+                                    </button>
+                                </div>
+                                <p id="settings-success-message" class="text-green-400 text-sm text-center"></p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, addDoc, collection, query, getDocs, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // DOM Elements
+        const loginPage = document.getElementById('login-page');
+        const appContainer = document.getElementById('app-container');
+        const userIdInput = document.getElementById('user-id-input');
+        const passwordLoginInput = document.getElementById('password-login-input');
+        const loginBtn = document.getElementById('login-btn');
+        const loginErrorMessage = document.getElementById('login-error-message');
+
+        const salesDropZone = document.getElementById('sales-drop-zone');
+        const salesFileInput = document.getElementById('sales-file-input');
+        const salesFileInfo = document.getElementById('sales-file-info');
+        const visitorDropZone = document.getElementById('visitor-drop-zone');
+        const visitorFileInput = document.getElementById('visitor-file-input');
+        const visitorFileInfo = document.getElementById('visitor-file-info');
+        const uploadBtn = document.getElementById('upload-btn');
+        const savedFilesList = document.getElementById('saved-files-list');
+        const importStatus = document.getElementById('import-status');
+        
+        const storeNameDisplay = document.getElementById('display-store-name');
+        const storeNameInput = document.getElementById('store-name-input');
+        const addressInput = document.getElementById('address-input');
+        const tsuboInput = document.getElementById('tsubo-input');
+        const passwordInput = document.getElementById('password-input');
+        const saveSettingsBtn = document.getElementById('save-settings-btn');
+        const settingsSuccessMessage = document.getElementById('settings-success-message');
+        const togglePasswordVisibility = document.getElementById('toggle-password-visibility');
+        const eyeIcon = document.getElementById('eye-icon');
+        const eyeSlashIcon = document.getElementById('eye-slash-icon');
+        const generateReportBtn = document.getElementById('generate-report-btn');
+        const reportContainer = document.getElementById('report-container');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const summaryTitle = document.getElementById('summary-title');
+
+        let chartInstances = {};
+        let salesData = [];
+        let visitorData = [];
+        let analysisResultCache = null;
+        let currentSalesFiles = [];
+        let currentVisitorFiles = [];
+
+        let db, auth, userId;
+        const appId = "vintage-analyzer";
+
+        // --- ログイン情報 ---
+        const users = {
+            "demo01": "password1",
+            "demo02": "password2"
+        };
+
+        // --- カテゴリコードの変換マップ ---
+        const oldTagMap = { '10': '半袖Ｔシャツ', '11': '長袖Ｔシャツ', '12': '半袖ポロシャツ', '13': '長袖ポロシャツ', '14': '半袖シャツ', '15': '長袖シャツ', '16': '半袖その他・ベスト', '17': '長袖その他', '30': 'パンツ', '31': 'ショートパンツ', '32': 'スカート', '40': 'トレーナー・パーカー・フリース', '41': 'カーディガン・ニット', '50': 'コート', '51': 'ジャケット・スーツ', '52': '革・ダウン・スタジャン', '53': 'アウターその他', '54': 'ナイロンジャケット', '60': 'オーバーオール・ワンピース', '61': 'ミリタリー・アウトドア', '62': 'スポーツウェア', 'FF': 'その他' };
+        const newTagMap = { '0': 'Tシャツ', '1': 'シャツ/半袖', '2': 'シャツ/長袖', '3': 'ポロシャツ/半袖', '4': 'ポロシャツ/長袖', '5': 'ロングTシャツ', '6': 'ナイロン トラックジャケット', '7': 'ライトアウター', '8': 'ネルシャツ', '9': 'スウェット', 'A': 'パーカー', 'B': 'ハーフジップ', 'C': 'フリース', 'D': 'ヘビーアウター', 'E': 'パンツ', 'F': 'その他/小物' };
+        
+        function translateCategoryCode(code, dateTime) {
+            if (!code) return 'カテゴリなし';
+            const upperCode = code.toUpperCase();
+            if (upperCode === 'F6D') return 'ワンピース';
+            let useOldTagLogicOnly = false;
+            if (dateTime) {
+                const datePart = dateTime.split(' ')[0];
+                const dateObj = new Date(datePart.replace(/[-.]/g, '/'));
+                if (!isNaN(dateObj.getTime())) {
+                    const oldTagStartDate = new Date('2024-09-01');
+                    const oldTagEndDate = new Date('2025-05-01');
+                    if (dateObj >= oldTagStartDate && dateObj < oldTagEndDate) {
+                        useOldTagLogicOnly = true;
+                    }
+                }
+            }
+            let processedCode = upperCode;
+            if (useOldTagLogicOnly) {
+                const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
+                if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+            } else {
+                 if (processedCode.length === 2 && /^[0-9A-F]+$/.test(processedCode)) {
+                     processedCode = '0' + processedCode;
+                 }
+                 const newTagKey = processedCode.substring(0, 1);
+                 if (newTagMap[newTagKey]) return newTagMap[newTagKey];
+                 const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
+                 if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+            }
+            return code;
+        }
+
+        // --- File Handling ---
+        const createDropZone = (zone, input, info, fileStore) => {
+            zone.addEventListener('click', () => input.click());
+            zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('border-indigo-500', 'bg-indigo-600'); });
+            zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); });
+            const setFiles = (files) => {
+                fileStore.length = 0;
+                Array.from(files).forEach(f => fileStore.push(f));
+                info.textContent = `${files.length}個のファイルを選択中`;
+            }
+            zone.addEventListener('drop', (e) => { e.preventDefault(); zone.classList.remove('border-indigo-500', 'bg-indigo-600'); setFiles(e.dataTransfer.files); });
+            input.addEventListener('change', (e) => { setFiles(e.target.files); });
+        };
+
+        createDropZone(salesDropZone, salesFileInput, salesFileInfo, currentSalesFiles);
+        createDropZone(visitorDropZone, visitorFileInput, visitorFileInfo, currentVisitorFiles);
+        
+        async function uploadAndSaveFiles() {
+            if (currentSalesFiles.length === 0 && currentVisitorFiles.length === 0) {
+                importStatus.textContent = "アップロードするファイルを選択してください。";
+                importStatus.classList.add('text-red-400');
+                return;
+            }
+
+            importStatus.textContent = 'アップロード処理中...';
+            importStatus.classList.remove('text-red-400', 'text-green-400');
+
+            const readFileAsText = (file) => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = (e) => reject(new Error(`File read error: ${e}`));
+                    reader.readAsText(file, 'Shift_JIS');
+                });
+            };
+
+            try {
+                let salesCsvText = "";
+                if (currentSalesFiles.length > 0) {
+                    const salesTexts = await Promise.all(currentSalesFiles.map(readFileAsText));
+                    salesCsvText = salesTexts.join('\n');
+                }
+                
+                let visitorCsvText = "";
+                if (currentVisitorFiles.length > 0) {
+                    const visitorTexts = await Promise.all(currentVisitorFiles.map(readFileAsText));
+                    visitorCsvText = visitorTexts.join('\n');
+                }
+
+                const tempSalesData = parseSalesCSV(salesCsvText || "");
+                const tempVisitorData = parseVisitorCSV(visitorCsvText || "");
+
+                if (tempSalesData.length === 0 && tempVisitorData.length === 0) {
+                    throw new Error("CSVファイルから有効なデータを読み取れませんでした。");
+                }
+                
+                const firstSaleDate = tempSalesData.length > 0 ? parseDate(tempSalesData[0].dateTime) : null;
+                const firstVisitorDate = tempVisitorData.length > 0 ? parseDate(tempVisitorData[0].date) : null;
+                
+                const representativeDate = firstSaleDate || firstVisitorDate;
+                if (!representativeDate) {
+                    throw new Error("データから有効な日付を取得できませんでした。");
+                }
+                
+                const year = representativeDate.getFullYear();
+                const month = representativeDate.getMonth() + 1;
+                
+                const docId = `${year}-${String(month).padStart(2, '0')}`;
+                const label = `${year}年${month}月データ`;
+                
+                const docRef = doc(db, "artifacts", appId, "users", userId, "datasets", docId);
+                const docSnap = await getDoc(docRef);
+                const existingData = docSnap.exists() ? docSnap.data() : {};
+
+                const dataToSave = {
+                    label: label,
+                    salesDataRaw: salesCsvText || existingData.salesDataRaw || "",
+                    visitorDataRaw: visitorCsvText || existingData.visitorDataRaw || "",
+                    createdAt: new Date()
+                };
+
+                await setDoc(docRef, dataToSave); 
+                
+                importStatus.textContent = `「${label}」を保存・更新しました。分析結果を表示します...`;
+                importStatus.classList.add('text-green-400');
+                
+                salesData = parseSalesCSV(dataToSave.salesDataRaw);
+                visitorData = parseVisitorCSV(dataToSave.visitorDataRaw);
+                runAnalysisAndDisplay();
+                
+                currentSalesFiles.length = 0;
+                currentVisitorFiles.length = 0;
+                salesFileInfo.textContent = '';
+                visitorFileInfo.textContent = '';
+
+            } catch (error) {
+                console.error("Upload failed:", error);
+                importStatus.textContent = `エラーが発生しました: ${error.message}`;
+                importStatus.classList.add('text-red-400');
+            }
+        }
+        
+        uploadBtn.addEventListener('click', uploadAndSaveFiles);
+
+        function parseSalesCSV(csvText) {
+            const lines = csvText.trim().split(/\r?\n/);
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                if (values.length <= 6) continue;
+                const dateTimeStr = values[2]?.trim();
+                if (!dateTimeStr) continue;
+                const priceString = values[6] ? String(values[6]).replace(/[^0-9]/g, '') : '';
+                const price = parseInt(priceString, 10);
+                if (isNaN(price)) continue;
+                data.push({ dateTime: dateTimeStr, category: values[4]?.trim(), price: price });
+            }
+            return data;
+        }
+
+        function parseVisitorCSV(csvText) {
+            const lines = csvText.trim().split(/\r?\n/);
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                if (values.length <= 8) continue;
+                const dateStr = values[2]?.trim();
+                if (!dateStr) continue;
+                const visitorCount = parseInt(String(values[8]).replace(/[^0-9]/g, ''), 10);
+                if (isNaN(visitorCount)) continue;
+                data.push({ date: dateStr, totalVisitors: visitorCount });
+            }
+            return data;
+        }
+
+        function getFridayWeekStartDate(date) {
+            const dayOfWeek = date.getDay();
+            const offset = (dayOfWeek - 5 + 7) % 7;
+            const weekStart = new Date(date);
+            weekStart.setDate(date.getDate() - offset);
+            const year = weekStart.getFullYear();
+            const month = (weekStart.getMonth() + 1).toString().padStart(2, '0');
+            const day = weekStart.getDate().toString().padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // --- Analysis ---
+        const parseDate = (dateString) => {
+            if (!dateString) return null;
+            const cleanDateString = dateString.trim().replace(/^"|"$/g, '');
+
+            if (/^\d{8}(\d{2})?$/.test(cleanDateString)) {
+                const year = parseInt(cleanDateString.substring(0, 4), 10);
+                const month = parseInt(cleanDateString.substring(4, 6), 10) - 1;
+                const day = parseInt(cleanDateString.substring(6, 8), 10);
+                const hours = cleanDateString.length >= 10 ? parseInt(cleanDateString.substring(8, 10), 10) : 0;
+                const dateObj = new Date(year, month, day, hours);
+                if (!isNaN(dateObj.getTime())) return dateObj;
+            }
+
+            const parts = cleanDateString.match(/(\d{4})[-.\/](\d{1,2})[-.\/](\d{1,2})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?/);
+            if (parts) {
+                const year = parseInt(parts[1], 10);
+                const month = parseInt(parts[2], 10) - 1;
+                const day = parseInt(parts[3], 10);
+                const hours = parts[4] ? parseInt(parts[4], 10) : 0;
+                const minutes = parts[5] ? parseInt(parts[5], 10) : 0;
+                const seconds = parts[6] ? parseInt(parts[6], 10) : 0;
+                const dateObj = new Date(year, month, day, hours, minutes, seconds);
+                if (!isNaN(dateObj.getTime())) return dateObj;
+            }
+
+            return null;
+        };
+
+        function analyzeData(sales, visitors) {
+            const dailyData = {};
+            
+            sales.forEach(item => {
+                const dateObj = parseDate(item.dateTime);
+                if (!dateObj || isNaN(dateObj.getTime())) {
+                    console.error("Invalid date format found in sales data:", item.dateTime);
+                    return;
+                }
+                const datePart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getDate()).padStart(2, '0')}`;
+                
+                if (!dailyData[datePart]) {
+                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+                }
+                
+                const category = translateCategoryCode(item.category, item.dateTime);
+                dailyData[datePart].sales += item.price;
+                dailyData[datePart].purchases += 1;
+                dailyData[datePart].categoryCounts[category] = (dailyData[datePart].categoryCounts[category] || 0) + 1;
+                dailyData[datePart].customerTransactions.add(item.dateTime);
+            });
+
+            visitors.forEach(item => {
+                const dateObj = parseDate(item.date);
+                if (!dateObj || isNaN(dateObj.getTime())) {
+                    console.error("Invalid date format found in visitor data:", item.date);
+                    return;
+                }
+                const datePart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getDate()).padStart(2, '0')}`;
+                if (!dailyData[datePart]) {
+                    dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+                }
+                dailyData[datePart].visitors += item.totalVisitors;
+            });
+
+            const weeklyStats = {};
+            const monthlyStats = {};
+
+            for (const datePart in dailyData) {
+                const dayData = dailyData[datePart];
+                const dateObj = new Date(datePart);
+                const weekStartDate = getFridayWeekStartDate(dateObj);
+                const monthPart = `${dateObj.getFullYear()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}`;
+
+                if (!weeklyStats[weekStartDate]) weeklyStats[weekStartDate] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+                if (!monthlyStats[monthPart]) monthlyStats[monthPart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
+
+                weeklyStats[weekStartDate].sales += dayData.sales;
+                weeklyStats[weekStartDate].purchases += dayData.purchases;
+                weeklyStats[weekStartDate].visitors += dayData.visitors;
+                dayData.customerTransactions.forEach(t => weeklyStats[weekStartDate].customerTransactions.add(t));
+                for(const cat in dayData.categoryCounts) weeklyStats[weekStartDate].categoryCounts[cat] = (weeklyStats[weekStartDate].categoryCounts[cat] || 0) + dayData.categoryCounts[cat];
+
+                monthlyStats[monthPart].sales += dayData.sales;
+                monthlyStats[monthPart].purchases += dayData.purchases;
+                monthlyStats[monthPart].visitors += dayData.visitors;
+                dayData.customerTransactions.forEach(t => monthlyStats[monthPart].customerTransactions.add(t));
+                for(const cat in dayData.categoryCounts) monthlyStats[monthPart].categoryCounts[cat] = (monthlyStats[monthPart].categoryCounts[cat] || 0) + dayData.categoryCounts[cat];
+            }
+            
+            const calculateDerivedMetrics = (period) => {
+                const sortedKeys = Object.keys(period).sort((a, b) => new Date(a) - new Date(b));
+                sortedKeys.forEach((key, index) => {
+                    const s = period[key];
+                    s.customerCount = s.customerTransactions.size;
+                    s.conversionRate = s.visitors > 0 ? (s.customerCount / s.visitors) * 100 : 0;
+                    s.avgItemsPerCustomer = s.customerCount > 0 ? s.purchases / s.customerCount : 0;
+                    s.averagePrice = s.purchases > 0 ? s.sales / s.purchases : 0;
+                    s.avgCustomerSpend = s.customerCount > 0 ? s.sales / s.customerCount : 0;
+
+                    if (index > 0) {
+                        const prevKey = sortedKeys[index - 1];
+                        const prevS = period[prevKey];
+                        Object.keys(s).forEach(metric => {
+                            if (typeof s[metric] === 'number' && typeof prevS[metric] === 'number' && prevS[metric] !== 0) {
+                                s[`${metric}Change`] = ((s[metric] - prevS[metric]) / prevS[metric]) * 100;
+                            }
+                        });
+                    }
+                });
+            };
+            
+            calculateDerivedMetrics(dailyData);
+            calculateDerivedMetrics(weeklyStats);
+            calculateDerivedMetrics(monthlyStats);
+            
+            const totalItems = sales.length;
+            const customerCount = new Set(sales.map(s => s.dateTime)).size;
+            const totalRevenue = sales.reduce((sum, item) => sum + item.price, 0);
+            const totalVisitors = visitors.reduce((sum, item) => sum + item.totalVisitors, 0);
+
+            return {
+                totalRevenue, totalItems, customerCount,
+                visitorCount: totalVisitors,
+                conversionRate: totalVisitors > 0 ? (customerCount / totalVisitors) * 100 : 0,
+                avgCustomerSpend: customerCount > 0 ? totalRevenue / customerCount : 0,
+                averagePrice: totalItems > 0 ? totalRevenue / totalItems : 0,
+                avgItemsPerCustomer: customerCount > 0 ? totalItems / customerCount : 0,
+                daily: dailyData, weekly: weeklyStats, monthly: monthlyStats
+            };
+        }
+
+        function runAnalysisAndDisplay() {
+            Object.values(chartInstances).forEach(chart => chart.destroy());
+            chartInstances = {};
+
+            analysisResultCache = analyzeData(salesData, visitorData);
+            
+            showPage('analytic-page');
+            showTab('tab-daily');
+        }
+        
+        const createChart = (canvasId, options) => {
+            const canvas = document.getElementById(canvasId);
+            const container = canvas.parentElement;
+            let noDataMessage = container.querySelector('.no-data-message');
+            if (!noDataMessage) {
+                noDataMessage = document.createElement('div');
+                noDataMessage.className = 'no-data-message';
+                container.appendChild(noDataMessage);
+            }
+
+            if (!options || !options.data || !options.data.labels || options.data.labels.length === 0) {
+                canvas.style.display = 'none';
+                noDataMessage.style.display = 'flex';
+                if (chartInstances[canvasId]) {
+                    chartInstances[canvasId].destroy();
+                    delete chartInstances[canvasId];
+                }
+            } else {
+                canvas.style.display = 'block';
+                noDataMessage.style.display = 'none';
+                if (chartInstances[canvasId]) {
+                    chartInstances[canvasId].destroy();
+                }
+                chartInstances[canvasId] = new Chart(canvas.getContext('2d'), options);
+            }
+        };
+
+        // --- UI Control ---
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function showPage(pageId) {
+            pages.forEach(page => page.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+            navLinks.forEach(link => link.classList.remove('active'));
+            const navId = `nav-${pageId.replace('-page', '')}`;
+            const activeLink = document.getElementById(navId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        function updateSummaryDashboard(data, title) {
+            summaryTitle.textContent = title;
+            
+            const metrics = {
+                'total-revenue': { value: data.sales || data.totalRevenue || 0, prefix: '¥', change: data.salesChange },
+                'total-items': { value: data.purchases || data.totalItems || 0, change: data.purchasesChange },
+                'customer-count': { value: data.customerCount || 0, change: data.customerCountChange },
+                'visitor-count': { value: data.visitors || data.visitorCount || 0, change: data.visitorsChange },
+                'conversion-rate': { value: data.conversionRate || 0, suffix: '%', toFixed: 1, change: data.conversionRateChange, isPercentage: true },
+                'avg-customer-spend': { value: data.avgCustomerSpend || 0, prefix: '¥', change: data.avgCustomerSpendChange },
+                'average-price': { value: data.averagePrice || 0, prefix: '¥', change: data.averagePriceChange },
+                'avg-items-per-customer': { value: data.avgItemsPerCustomer || 0, suffix: ' 点', toFixed: 1, change: data.avgItemsPerCustomerChange },
+            };
+
+            for (const id in metrics) {
+                const metric = metrics[id];
+                const valueEl = document.getElementById(id);
+                const changeEl = document.getElementById(`${id}-change`);
+                
+                let formattedValue = typeof metric.value === 'number' ? Math.round(metric.value).toLocaleString() : metric.value;
+                if(metric.toFixed) formattedValue = metric.value.toFixed(metric.toFixed);
+
+                valueEl.textContent = `${metric.prefix || ''}${formattedValue}${metric.suffix || ''}`;
+
+                if (metric.change !== undefined && metric.change !== null) {
+                    const isPositive = metric.change >= 0;
+                    const colorClass = isPositive ? 'text-green-400' : 'text-red-400';
+                    const arrow = isPositive ? '↑' : '↓';
+                    const changeValue = metric.isPercentage ? metric.change.toFixed(1) : Math.abs(metric.change).toFixed(1);
+
+                    changeEl.innerHTML = `<span class="${colorClass}">${arrow} ${changeValue}%</span>`;
+                    changeEl.classList.remove('hidden');
+                } else {
+                    changeEl.innerHTML = '';
+                    changeEl.classList.add('hidden');
+                }
+            }
+        }
+
+        function showTab(tabId) {
+            tabContents.forEach(content => content.classList.add('hidden'));
+            const contentId = `${tabId.replace('tab-', '')}-tab-content`;
+            const contentElement = document.getElementById(contentId);
+            if (contentElement) contentElement.classList.remove('hidden');
+            tabLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.getElementById(tabId);
+            if(activeLink) activeLink.classList.add('active');
+            
+            requestAnimationFrame(() => {
+                const result = analysisResultCache;
+                if (!result) {
+                    updateSummaryDashboard({}, "データがありません");
+                    return;
+                };
+                const chartColor = 'rgba(224, 231, 255, 0.7)';
+                const chartGridColor = 'rgba(199, 210, 254, 0.2)';
+                const chartOptions = {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    layout: { padding: 10 },
+                    scales: {
+                        y: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } },
+                        x: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } }
+                    }
+                };
+                const lineChartOptions = (unit = '') => ({
+                    ...chartOptions,
+                    scales: {
+                        y: { ticks: { color: chartColor, callback: v => `${v}${unit}` }, grid: { color: chartGridColor, drawBorder: false } },
+                        x: { ticks: { color: chartColor }, grid: { color: chartGridColor, drawBorder: false } }
+                    }
+                });
+
+                const colors = { sales: '#818cf8', purchases: '#34d399', customers: '#6ee7b7', visitors: '#facc15', conversion: '#f87171', avgItems: '#fbbf24', avgPrice: '#f472b6'};
+                
+                if (tabId === 'tab-daily') {
+                    updateSummaryDashboard(result, "全体サマリー");
+                    const allSortedDays = Object.keys(result.daily).sort((a,b) => new Date(a) - new Date(b));
+                    
+                    createChart('daily-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '売上', data: allSortedDays.map(d => result.daily[d].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('daily-purchase-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '購買数', data: allSortedDays.map(d => result.daily[d].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('daily-customer-count-chart', { type: 'bar', data: { labels: allSortedDays, datasets: [{ label: '購買客数', data: allSortedDays.map(d => result.daily[d].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+
+                    const firstVisitorDayIndex = allSortedDays.findIndex(day => result.daily[day].visitors > 0);
+                    const visitorDays = firstVisitorDayIndex !== -1 ? allSortedDays.slice(firstVisitorDayIndex) : [];
+
+                    createChart('daily-visitor-count-chart', { type: 'bar', data: { labels: visitorDays, datasets: [{ label: '来店客数', data: visitorDays.map(d => result.daily[d].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('daily-conversion-chart', { type: 'line', data: { labels: visitorDays, datasets: [{ label: '購買率', data: visitorDays.map(d => result.daily[d].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                }
+
+                if (tabId === 'tab-weekly') {
+                    const sortedWeeks = Object.keys(result.weekly).sort((a,b) => new Date(a) - new Date(b));
+                    const latestWeekKey = sortedWeeks[sortedWeeks.length - 1];
+                    const latestWeekData = result.weekly[latestWeekKey];
+                    if(latestWeekData) updateSummaryDashboard(latestWeekData, `最新週のサマリー (${latestWeekKey}〜)`);
+                    
+                    createChart('weekly-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '売上', data: sortedWeeks.map(w => result.weekly[w].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('weekly-purchase-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '購買数', data: sortedWeeks.map(w => result.weekly[w].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('weekly-customer-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '購買客数', data: sortedWeeks.map(w => result.weekly[w].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+                    createChart('weekly-visitor-chart', { type: 'bar', data: { labels: sortedWeeks, datasets: [{ label: '来店客数', data: sortedWeeks.map(w => result.weekly[w].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('weekly-conversion-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '購買率', data: sortedWeeks.map(w => result.weekly[w].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                    createChart('weekly-avg-items-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '平均買上点数', data: sortedWeeks.map(w => result.weekly[w].avgItemsPerCustomer.toFixed(2)), borderColor: colors.avgItems, backgroundColor: colors.avgItems, fill: false, tension: 0.1 }] }, options: lineChartOptions('点') });
+                    createChart('weekly-avg-price-chart', { type: 'line', data: { labels: sortedWeeks, datasets: [{ label: '平均商品単価', data: sortedWeeks.map(w => Math.round(result.weekly[w].averagePrice)), borderColor: colors.avgPrice, backgroundColor: colors.avgPrice, fill: false, tension: 0.1 }] }, options: lineChartOptions('円') });
+                }
+
+                if (tabId === 'tab-monthly') {
+                    const sortedMonths = Object.keys(result.monthly).sort();
+                    const latestMonthKey = sortedMonths[sortedMonths.length - 1];
+                    const latestMonthData = result.monthly[latestMonthKey];
+                    if(latestMonthData) updateSummaryDashboard(latestMonthData, `最新月のサマリー (${latestMonthKey.replace('/', '年')}月)`);
+
+                    createChart('monthly-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '売上', data: sortedMonths.map(m => result.monthly[m].sales), backgroundColor: colors.sales }] }, options: chartOptions });
+                    createChart('monthly-purchase-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '購買数', data: sortedMonths.map(m => result.monthly[m].purchases), backgroundColor: colors.purchases }] }, options: chartOptions });
+                    createChart('monthly-customer-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '購買客数', data: sortedMonths.map(m => result.monthly[m].customerCount), backgroundColor: colors.customers }] }, options: chartOptions });
+                    createChart('monthly-visitor-chart', { type: 'bar', data: { labels: sortedMonths, datasets: [{ label: '来店客数', data: sortedMonths.map(m => result.monthly[m].visitors), backgroundColor: colors.visitors }] }, options: chartOptions });
+                    createChart('monthly-conversion-chart', { type: 'line', data: { labels: sortedMonths, datasets: [{ label: '購買率', data: sortedMonths.map(m => result.monthly[m].conversionRate.toFixed(1)), borderColor: colors.conversion, backgroundColor: colors.conversion, fill: false, tension: 0.1 }] }, options: lineChartOptions('%') });
+                }
+                
+                if (tabId.startsWith('tab-')) {
+                    const period = tabId.replace('tab-', '');
+                    displayRankings(period, result);
+                }
+            }); 
+        }
+        
+        function getCategoryIcon(categoryName) {
+            const iconClass = "h-5 w-5 mr-3 text-pink-300 flex-shrink-0";
+            switch (true) {
+                case /Tシャツ/.test(categoryName):
+                    return `<span class="font-bold text-lg ${iconClass}" style="line-height: 1.25rem; width: 1.25rem; text-align: center;">T</span>`;
+                case /シャツ\/半袖/.test(categoryName):
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.5,6.5H15V4.5a2,2,0,0,0-2-2h-2a2,2,0,0,0-2,2V6.5H6.5a2,2,0,0,0-2,2v8a2,2,0,0,0,2,2h11a2,2,0,0,0,2-2v-8A2,2,0,0,0,17.5,6.5Zm-7-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5V6.5h-3Z"/></svg>`;
+                case /シャツ/.test(categoryName):
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m-4-12l-4 4v10h16V8l-4-4H12z" /></svg>`;
+                case /パンツ/.test(categoryName):
+                     return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 4v16m8-16v16M8 4h8m-8 16h8" /></svg>`;
+                case /ジャケット|アウター|コート|ジャン/.test(categoryName):
+                     return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16M4 12l8-8 8 8M4 12v8h16v-8" /></svg>`;
+                default:
+                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>`;
+            }
+        }
+
+        function displayRankings(period, result) {
+            const container = document.getElementById(`${period}-category-rankings`);
+            if (!container) return;
+            container.innerHTML = '';
+            const sortedKeys = Object.keys(result[period]).sort((a,b) => new Date(b) - new Date(a));
+            if (sortedKeys.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-400 py-4 col-span-full">表示するデータがありません。</div>`;
+                return;
+            }
+            sortedKeys.forEach(key => {
+                const stats = result[period][key];
+                if(!stats.categoryCounts) return;
+                const ranked = Object.entries(stats.categoryCounts).sort(([,a],[,b]) => b-a).slice(0, 5);
+                if(ranked.length === 0) return;
+
+                let displayKey = key;
+                if (period === 'weekly') {
+                    const startDate = new Date(key.replace(/-/g, '/'));
+                    const endDate = new Date(startDate);
+                    endDate.setDate(startDate.getDate() + 6);
+                    displayKey = `${key.replace(/-/g, '/')} ～ ${(endDate.getMonth() + 1)}/${endDate.getDate()}`;
+                } else if (period === 'monthly') {
+                    displayKey = `${key.replace('/', '年')}月`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'bg-indigo-800 p-6 rounded-2xl shadow-lg';
+                
+                const title = document.createElement('h4');
+                title.className = 'font-semibold text-lg mb-4 text-white';
+                title.textContent = `${displayKey} カテゴリ別購買数`;
+                card.appendChild(title);
+
+                const contentWrapper = document.createElement('div');
+                contentWrapper.className = 'space-y-4';
+                
+                const maxValue = Math.max(...ranked.map(item => item[1]));
+                const colors = ['#ec4899', '#f472b6', '#f9a8d4', '#fbcfe8', '#fce7f3'].map(hex => {
+                    let r = 0, g = 0, b = 0;
+                    if (hex.length == 4) {
+                        r = "0x" + hex[1] + hex[1];
+                        g = "0x" + hex[2] + hex[2];
+                        b = "0x" + hex[3] + hex[3];
+                    } else if (hex.length == 7) {
+                        r = "0x" + hex[1] + hex[2];
+                        g = "0x" + hex[3] + hex[4];
+                        b = "0x" + hex[5] + hex[6];
+                    }
+                    return {r: +r, g: +g, b: +b};
+                });
+                
+                const gradientColors = ranked.map((_, index) => {
+                    const ratio = ranked.length > 1 ? index / (ranked.length - 1) : 1;
+                    const r = Math.round(colors[0].r * (1 - ratio) + colors[colors.length - 1].r * ratio);
+                    const g = Math.round(colors[0].g * (1 - ratio) + colors[colors.length - 1].g * ratio);
+                    const b = Math.round(colors[0].b * (1 - ratio) + colors[colors.length - 1].b * ratio);
+                    return `rgb(${r}, ${g}, ${b})`;
+                });
+
+
+                ranked.forEach(([name, value], index) => {
+                    const percentage = stats.purchases > 0 ? ((value / stats.purchases) * 100).toFixed(1) : '0.0';
+                    const barWidth = maxValue > 0 ? (value / maxValue) * 100 : 0;
+                    
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'grid grid-cols-12 gap-4 items-center text-sm';
+                    
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'col-span-4 flex items-center';
+                    nameDiv.innerHTML = `${getCategoryIcon(name)}<span class="font-semibold text-indigo-200 truncate">${name}</span>`;
+
+                    const barDiv = document.createElement('div');
+                    barDiv.className = 'col-span-8 flex items-center';
+
+                    const barContainer = document.createElement('div');
+                    barContainer.className = 'flex-1 bg-indigo-700/50 rounded-full h-4';
+                    
+                    const bar = document.createElement('div');
+                    bar.className = 'h-4 rounded-full';
+                    bar.style.width = `${barWidth}%`;
+                    bar.style.backgroundColor = gradientColors[index];
+
+                    const valueSpan = document.createElement('span');
+                    valueSpan.className = 'ml-3 w-28 text-left text-indigo-200';
+                    valueSpan.textContent = `${value}点 (${percentage}%)`;
+
+                    barContainer.appendChild(bar);
+                    barDiv.appendChild(barContainer);
+                    barDiv.appendChild(valueSpan);
+
+                    itemDiv.appendChild(nameDiv);
+                    itemDiv.appendChild(barDiv);
+                    contentWrapper.appendChild(itemDiv);
+                });
+                
+                card.appendChild(contentWrapper);
+                container.appendChild(card);
+            });
+        }
+        
+        function saveSettings() {
+            const settings = {
+                storeName: storeNameInput.value,
+                address: addressInput.value,
+                tsubo: tsuboInput.value,
+                password: passwordInput.value
+            };
+            localStorage.setItem('dashboardSettings', JSON.stringify(settings));
+            updateStoreName(settings.storeName);
+            settingsSuccessMessage.textContent = '保存しました！';
+            setTimeout(() => { settingsSuccessMessage.textContent = '' }, 3000);
+        }
+
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('dashboardSettings')) || {};
+            updateStoreName(settings.storeName);
+            storeNameInput.value = settings.storeName || '';
+            addressInput.value = settings.address || '';
+            tsuboInput.value = settings.tsubo || '';
+    /svg" class="h-5 w-5 text-gray-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+            _2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>AI Report</span>
+                    </a>
+                    <a href="#" id="nav-setting" class="nav-link px-4 py-2.5 rounded-md text-sm font-medium text-indigo-200 hover:bg-indigo-700 hover:text-white flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
