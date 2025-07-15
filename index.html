@@ -1110,13 +1110,14 @@ ${dataSummary}
         loginBtn.addEventListener('click', async () => {
             loginErrorMessage.textContent = '接続中...';
             try {
-                const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-                    apiKey: "YOUR_API_KEY", // フォールバック用の値を設定
-                    authDomain: "YOUR_AUTH_DOMAIN",
-                    projectId: "YOUR_PROJECT_ID",
-                    storageBucket: "YOUR_STORAGE_BUCKET",
-                    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-                    appId: "YOUR_APP_ID"
+                const firebaseConfig = {
+                    apiKey: "AIzaSyAcVcWgUBQHw33bLCSWzqzIXOvs0szKMvo",
+                    authDomain: "vintage-analyzer-f4111.firebaseapp.com",
+                    projectId: "vintage-analyzer-f4111",
+                    storageBucket: "vintage-analyzer-f4111.appspot.com",
+                    messagingSenderId: "207991861674",
+                    appId: "1:207991861674:web:a32f87d4ccb88437f7bbd3",
+                    measurementId: "G-13BZQ8VXCQ"
                 };
 
                 const app = initializeApp(firebaseConfig);
