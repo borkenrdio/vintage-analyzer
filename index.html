@@ -26,6 +26,7 @@
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
+            height: 8px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #1e1b4b;
@@ -53,6 +54,41 @@
         .prose ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
         .prose li { margin-bottom: 0.5rem; }
         .prose strong { font-weight: 600; color: #c7d2fe; }
+        
+        /* Heatmap Table Styles */
+        .heatmap-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+        .heatmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            white-space: nowrap;
+            font-size: 0.8rem;
+        }
+        .heatmap-table th, .heatmap-table td {
+            border: 1px solid #312e81;
+            padding: 0.5rem 0.75rem;
+            text-align: center;
+        }
+        .heatmap-table thead th {
+            background-color: #312e81;
+            color: #e0e7ff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .heatmap-table tbody th {
+            background-color: #312e81;
+            color: #e0e7ff;
+            text-align: left;
+            position: sticky;
+            left: 0;
+        }
+        .heatmap-table td {
+            color: #1e1b4b;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body class="bg-indigo-900 text-gray-200">
@@ -66,24 +102,13 @@
                 </h2>
             </div>
             <div class="mt-8 space-y-6 bg-indigo-800 p-8 shadow-2xl rounded-2xl">
-                <div class="rounded-md shadow-sm -space-y-px">
-                    <div>
-                        <label for="user-id-input" class="sr-only">ユーザーID</label>
-                        <input id="user-id-input" name="userid" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-3 bg-indigo-700 border border-indigo-600 placeholder-gray-400 text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="ユーザーID">
-                    </div>
-                    <div>
-                        <label for="password-login-input" class="sr-only">パスワード</label>
-                        <input id="password-login-input" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-3 bg-indigo-700 border border-indigo-600 placeholder-gray-400 text-white rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="パスワード">
-                    </div>
-                </div>
-
-                <p id="login-error-message" class="text-red-400 text-sm text-center h-4"></p>
-
+                <p class="text-center text-indigo-200">ダッシュボードへようこそ</p>
                 <div>
                     <button id="login-btn" type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-800 focus:ring-white">
-                        ログイン
+                        ダッシュボードを開く
                     </button>
                 </div>
+                 <p id="login-error-message" class="text-red-400 text-sm text-center h-4"></p>
             </div>
         </div>
     </div>
@@ -131,44 +156,34 @@
                     <!-- Import ページ -->
                     <div id="import-page" class="page hidden">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
-                                <h2 class="text-xl font-bold mb-4 text-white">新規データ追加</h2>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <!-- 売上データアップロード -->
-                                    <div id="sales-upload-container">
-                                        <h3 class="text-lg font-semibold mb-2 text-indigo-200">売上データ</h3>
-                                        <div id="sales-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors">
-                                            <div class="flex flex-col items-center justify-center">
-                                                <svg class="w-10 h-10 text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 17.25z" /></svg>
-                                                <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
-                                                <input type="file" id="sales-file-input" class="hidden" accept=".csv" multiple>
-                                            </div>
-                                        </div>
-                                        <div id="sales-file-info" class="mt-2 text-center text-xs text-indigo-300"></div>
-                                    </div>
-                                    <!-- 来店客数データアップロード -->
-                                    <div id="visitor-upload-container">
-                                        <h3 class="text-lg font-semibold mb-2 text-indigo-200">来店客数データ</h3>
-                                        <div id="visitor-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors">
-                                            <div class="flex flex-col items-center justify-center">
-                                                <svg class="w-10 h-10 text-indigo-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.375 3.375 0 0110.5 12h3c1.414 0 2.695.606 3.586 1.595M15.11 5.46A9.037 9.037 0 0112 3c-1.605 0-3.097.49-4.388 1.342M12 21a9.037 9.037 0 01-4.388-1.342" /></svg>
-                                                <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
-                                                <input type="file" id="visitor-file-input" class="hidden" accept=".csv" multiple>
-                                            </div>
-                                        </div>
-                                        <div id="visitor-file-info" class="mt-2 text-center text-xs text-indigo-300"></div>
-                                    </div>
+                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg flex flex-col">
+                                <h2 class="text-xl font-bold mb-4 text-white">売上データ</h2>
+                                <div id="sales-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors flex-grow flex flex-col justify-center">
+                                    <svg class="w-10 h-10 text-indigo-400 mb-2 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 17.25z" /></svg>
+                                    <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
+                                    <input type="file" id="sales-file-input" class="hidden" accept=".csv" multiple>
                                 </div>
-                                <button id="upload-btn" class="mt-4 w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-500 transition-colors shadow-lg">アップロード</button>
+                                <div id="sales-file-info" class="mt-2 text-center text-xs text-indigo-300 h-4"></div>
+                                <button id="upload-sales-btn" class="mt-4 w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-500 transition-colors shadow-lg">売上データをアップロード</button>
                             </div>
-                            <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
-                                <h2 class="text-xl font-bold mb-4 text-white">保存済みデータ</h2>
-                                <div id="saved-files-list" class="bg-indigo-900/50 p-4 rounded-lg shadow-inner h-64 overflow-y-auto custom-scrollbar">
-                                   <p class="text-center text-indigo-300">保存されたデータはありません。</p>
+                             <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg flex flex-col">
+                                <h2 class="text-xl font-bold mb-4 text-white">来店客数データ</h2>
+                                <div id="visitor-drop-zone" class="border-2 border-dashed border-indigo-600 rounded-lg p-6 text-center cursor-pointer bg-indigo-700 hover:bg-indigo-600 transition-colors flex-grow flex flex-col justify-center">
+                                    <svg class="w-10 h-10 text-indigo-400 mb-2 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.375 3.375 0 0110.5 12h3c1.414 0 2.695.606 3.586 1.595M15.11 5.46A9.037 9.037 0 0112 3c-1.605 0-3.097.49-4.388 1.342M12 21a9.037 9.037 0 01-4.388-1.342" /></svg>
+                                    <p class="text-indigo-200 font-semibold text-sm">CSVをドロップ</p>
+                                    <input type="file" id="visitor-file-input" class="hidden" accept=".csv" multiple>
                                 </div>
+                                <div id="visitor-file-info" class="mt-2 text-center text-xs text-indigo-300 h-4"></div>
+                                <button id="upload-visitor-btn" class="mt-4 w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-500 transition-colors shadow-lg">来店客数データをアップロード</button>
                             </div>
                         </div>
                         <div id="import-status" class="mt-6 p-4 rounded-lg bg-indigo-800 shadow-lg text-center font-semibold h-12 flex items-center justify-center"></div>
+                         <div class="mt-8 bg-indigo-800 p-6 rounded-2xl shadow-lg">
+                            <h2 class="text-xl font-bold mb-4 text-white">保存済みデータ</h2>
+                            <div id="saved-files-list" class="bg-indigo-900/50 p-4 rounded-lg shadow-inner max-h-64 overflow-y-auto custom-scrollbar">
+                               <p class="text-center text-indigo-300">保存されたデータはありません。</p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Analytic ページ -->
@@ -207,8 +222,8 @@
                                 <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">日別 購買率</h3><div class="chart-container"><canvas id="daily-conversion-chart"></canvas></div></div>
                             </div>
                             <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg">
-                                <h3 class="font-semibold text-lg mb-4 text-white">日別 カテゴリ購買数ランキング</h3>
-                                <div id="daily-category-rankings" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                                <h3 class="font-semibold text-lg mb-4 text-white">日別 カテゴリ構成比</h3>
+                                <div id="daily-category-heatmap" class="heatmap-container custom-scrollbar"></div>
                             </div>
                         </div>
 
@@ -224,8 +239,8 @@
                                 <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">週別 平均商品単価</h3><div class="chart-container"><canvas id="weekly-avg-price-chart"></canvas></div></div>
                             </div>
                             <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg mt-6">
-                                <h3 class="font-semibold text-lg mb-4 text-white">週別 カテゴリ購買数ランキング</h3>
-                                <div id="weekly-category-rankings" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                                <h3 class="font-semibold text-lg mb-4 text-white">週別 カテゴリ構成比</h3>
+                                <div id="weekly-category-heatmap" class="heatmap-container custom-scrollbar"></div>
                             </div>
                         </div>
 
@@ -239,8 +254,8 @@
                                 <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg"><h3 class="font-semibold text-lg mb-4 text-white">月別 購買率</h3><div class="chart-container"><canvas id="monthly-conversion-chart"></canvas></div></div>
                             </div>
                             <div class="bg-indigo-800 p-6 rounded-2xl shadow-lg mt-6">
-                                <h3 class="font-semibold text-lg mb-4 text-white">月別 カテゴリ購買数ランキング</h3>
-                                <div id="monthly-category-rankings" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                                <h3 class="font-semibold text-lg mb-4 text-white">月別 カテゴリ構成比</h3>
+                                <div id="monthly-category-heatmap" class="heatmap-container custom-scrollbar"></div>
                             </div>
                         </div>
                     </div>
@@ -313,14 +328,12 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, addDoc, collection, query, getDocs, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // DOM Elements
         const loginPage = document.getElementById('login-page');
         const appContainer = document.getElementById('app-container');
-        const userIdInput = document.getElementById('user-id-input');
-        const passwordLoginInput = document.getElementById('password-login-input');
         const loginBtn = document.getElementById('login-btn');
         const loginErrorMessage = document.getElementById('login-error-message');
 
@@ -330,7 +343,8 @@
         const visitorDropZone = document.getElementById('visitor-drop-zone');
         const visitorFileInput = document.getElementById('visitor-file-input');
         const visitorFileInfo = document.getElementById('visitor-file-info');
-        const uploadBtn = document.getElementById('upload-btn');
+        const uploadSalesBtn = document.getElementById('upload-sales-btn');
+        const uploadVisitorBtn = document.getElementById('upload-visitor-btn');
         const savedFilesList = document.getElementById('saved-files-list');
         const importStatus = document.getElementById('import-status');
         
@@ -357,48 +371,34 @@
         let currentVisitorFiles = [];
 
         let db, auth, userId;
-        const appId = "vintage-analyzer";
-
-        // --- ログイン情報 ---
-        const users = {
-            "demo01": "password1",
-            "demo02": "password2"
-        };
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'vintage-analyzer-5';
 
         // --- カテゴリコードの変換マップ ---
         const oldTagMap = { '10': '半袖Ｔシャツ', '11': '長袖Ｔシャツ', '12': '半袖ポロシャツ', '13': '長袖ポロシャツ', '14': '半袖シャツ', '15': '長袖シャツ', '16': '半袖その他・ベスト', '17': '長袖その他', '30': 'パンツ', '31': 'ショートパンツ', '32': 'スカート', '40': 'トレーナー・パーカー・フリース', '41': 'カーディガン・ニット', '50': 'コート', '51': 'ジャケット・スーツ', '52': '革・ダウン・スタジャン', '53': 'アウターその他', '54': 'ナイロンジャケット', '60': 'オーバーオール・ワンピース', '61': 'ミリタリー・アウトドア', '62': 'スポーツウェア', 'FF': 'その他' };
         const newTagMap = { '0': 'Tシャツ', '1': 'シャツ/半袖', '2': 'シャツ/長袖', '3': 'ポロシャツ/半袖', '4': 'ポロシャツ/長袖', '5': 'ロングTシャツ', '6': 'ナイロン トラックジャケット', '7': 'ライトアウター', '8': 'ネルシャツ', '9': 'スウェット', 'A': 'パーカー', 'B': 'ハーフジップ', 'C': 'フリース', 'D': 'ヘビーアウター', 'E': 'パンツ', 'F': 'その他/小物' };
         
-        function translateCategoryCode(code, dateTime) {
-            if (!code) return 'カテゴリなし';
+        function getCategoryName(code, dateTime) {
+            if (!code) return 'その他';
+            const dateObj = parseDate(dateTime);
+            if (!dateObj) return 'その他';
+
+            const newTagStartDate = new Date('2025-05-01');
             const upperCode = code.toUpperCase();
-            if (upperCode === 'F6D') return 'ワンピース';
-            let useOldTagLogicOnly = false;
-            if (dateTime) {
-                const datePart = dateTime.split(' ')[0];
-                const dateObj = new Date(datePart.replace(/[-.]/g, '/'));
-                if (!isNaN(dateObj.getTime())) {
-                    const oldTagStartDate = new Date('2024-09-01');
-                    const oldTagEndDate = new Date('2025-05-01');
-                    if (dateObj >= oldTagStartDate && dateObj < oldTagEndDate) {
-                        useOldTagLogicOnly = true;
-                    }
+
+            if (dateObj >= newTagStartDate) {
+                // 2025/5/1以降のロジック
+                let processedCode = upperCode;
+                if (processedCode.length === 2 && /^[0-9A-F]+$/.test(processedCode)) {
+                    processedCode = '0' + processedCode;
                 }
-            }
-            let processedCode = upperCode;
-            if (useOldTagLogicOnly) {
-                const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
-                if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+                const newTagKey = processedCode.substring(0, 1);
+                return newTagMap[newTagKey] || 'その他';
             } else {
-                 if (processedCode.length === 2 && /^[0-9A-F]+$/.test(processedCode)) {
-                     processedCode = '0' + processedCode;
-                 }
-                 const newTagKey = processedCode.substring(0, 1);
-                 if (newTagMap[newTagKey]) return newTagMap[newTagKey];
-                 const oldTagKey = processedCode.length >= 2 ? processedCode.substring(processedCode.length - 2) : null;
-                 if (oldTagMap[oldTagKey]) return oldTagMap[oldTagKey];
+                // 2025/4/30以前のロジック
+                if (upperCode === 'F6D') return 'ワンピース';
+                const oldTagKey = upperCode.length >= 2 ? upperCode.substring(upperCode.length - 2) : null;
+                return oldTagMap[oldTagKey] || 'その他';
             }
-            return code;
         }
 
         // --- File Handling ---
@@ -418,8 +418,12 @@
         createDropZone(salesDropZone, salesFileInput, salesFileInfo, currentSalesFiles);
         createDropZone(visitorDropZone, visitorFileInput, visitorFileInfo, currentVisitorFiles);
         
-        async function uploadAndSaveFiles() {
-            if (currentSalesFiles.length === 0 && currentVisitorFiles.length === 0) {
+        async function uploadAndSaveFiles(dataType) {
+            const filesToUpload = dataType === 'sales' ? currentSalesFiles : currentVisitorFiles;
+            const fileInfoEl = dataType === 'sales' ? salesFileInfo : visitorFileInfo;
+            const fileInputEl = dataType === 'sales' ? salesFileInput : visitorFileInput;
+
+            if (filesToUpload.length === 0) {
                 importStatus.textContent = "アップロードするファイルを選択してください。";
                 importStatus.classList.add('text-red-400');
                 return;
@@ -438,29 +442,18 @@
             };
 
             try {
-                let salesCsvText = "";
-                if (currentSalesFiles.length > 0) {
-                    const salesTexts = await Promise.all(currentSalesFiles.map(readFileAsText));
-                    salesCsvText = salesTexts.join('\n');
-                }
-                
-                let visitorCsvText = "";
-                if (currentVisitorFiles.length > 0) {
-                    const visitorTexts = await Promise.all(currentVisitorFiles.map(readFileAsText));
-                    visitorCsvText = visitorTexts.join('\n');
+                const texts = await Promise.all(filesToUpload.map(readFileAsText));
+                const csvText = texts.join('\n');
+
+                let representativeDate = null;
+                if (dataType === 'sales') {
+                    const tempSalesData = parseSalesCSV(csvText);
+                    if (tempSalesData.length > 0) representativeDate = parseDate(tempSalesData[0].dateTime);
+                } else {
+                    const tempVisitorData = parseVisitorCSV(csvText);
+                    if (tempVisitorData.length > 0) representativeDate = parseDate(tempVisitorData[0].date);
                 }
 
-                const tempSalesData = parseSalesCSV(salesCsvText || "");
-                const tempVisitorData = parseVisitorCSV(visitorCsvText || "");
-
-                if (tempSalesData.length === 0 && tempVisitorData.length === 0) {
-                    throw new Error("CSVファイルから有効なデータを読み取れませんでした。");
-                }
-                
-                const firstSaleDate = tempSalesData.length > 0 ? parseDate(tempSalesData[0].dateTime) : null;
-                const firstVisitorDate = tempVisitorData.length > 0 ? parseDate(tempVisitorData[0].date) : null;
-                
-                const representativeDate = firstSaleDate || firstVisitorDate;
                 if (!representativeDate) {
                     throw new Error("データから有効な日付を取得できませんでした。");
                 }
@@ -472,29 +465,46 @@
                 const label = `${year}年${month}月データ`;
                 
                 const docRef = doc(db, "artifacts", appId, "users", userId, "datasets", docId);
-                const docSnap = await getDoc(docRef);
-                const existingData = docSnap.exists() ? docSnap.data() : {};
-
-                const dataToSave = {
+                
+                const dataToUpdate = {
                     label: label,
-                    salesDataRaw: salesCsvText || existingData.salesDataRaw || "",
-                    visitorDataRaw: visitorCsvText || existingData.visitorDataRaw || "",
-                    createdAt: new Date()
+                    updatedAt: new Date()
                 };
 
-                await setDoc(docRef, dataToSave); 
+                if (dataType === 'sales') {
+                    dataToUpdate.salesDataRaw = csvText;
+                } else { // dataType === 'visitor'
+                    dataToUpdate.visitorDataRaw = csvText;
+                }
+
+                await setDoc(docRef, dataToUpdate, { merge: true }); 
                 
-                importStatus.textContent = `「${label}」を保存・更新しました。分析結果を表示します...`;
+                // After upload, reload all data to reflect changes
+                const q = query(collection(db, "artifacts", appId, "users", userId, "datasets"));
+                const querySnapshot = await getDocs(q);
+                
+                let allSalesRaw = "";
+                let allVisitorsRaw = "";
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.salesDataRaw) {
+                        allSalesRaw += data.salesDataRaw + '\n';
+                    }
+                    if (data.visitorDataRaw) {
+                        allVisitorsRaw += data.visitorDataRaw + '\n';
+                    }
+                });
+
+                importStatus.textContent = `「${label}」に${dataType === 'sales' ? '売上' : '来店客数'}データを保存・更新しました。`;
                 importStatus.classList.add('text-green-400');
                 
-                salesData = parseSalesCSV(dataToSave.salesDataRaw);
-                visitorData = parseVisitorCSV(dataToSave.visitorDataRaw);
+                salesData = parseSalesCSV(allSalesRaw);
+                visitorData = parseVisitorCSV(allVisitorsRaw);
                 runAnalysisAndDisplay();
                 
-                currentSalesFiles.length = 0;
-                currentVisitorFiles.length = 0;
-                salesFileInfo.textContent = '';
-                visitorFileInfo.textContent = '';
+                filesToUpload.length = 0;
+                fileInputEl.value = '';
+                fileInfoEl.textContent = '';
 
             } catch (error) {
                 console.error("Upload failed:", error);
@@ -503,7 +513,8 @@
             }
         }
         
-        uploadBtn.addEventListener('click', uploadAndSaveFiles);
+        uploadSalesBtn.addEventListener('click', () => uploadAndSaveFiles('sales'));
+        uploadVisitorBtn.addEventListener('click', () => uploadAndSaveFiles('visitor'));
 
         function parseSalesCSV(csvText) {
             const lines = csvText.trim().split(/\r?\n/);
@@ -591,7 +602,7 @@
                     dailyData[datePart] = { sales: 0, purchases: 0, visitors: 0, categoryCounts: {}, customerTransactions: new Set() };
                 }
                 
-                const category = translateCategoryCode(item.category, item.dateTime);
+                const category = getCategoryName(item.category, item.dateTime);
                 dailyData[datePart].sales += item.price;
                 dailyData[datePart].purchases += 1;
                 dailyData[datePart].categoryCounts[category] = (dailyData[datePart].categoryCounts[category] || 0) + 1;
@@ -854,106 +865,94 @@
                 
                 if (tabId.startsWith('tab-')) {
                     const period = tabId.replace('tab-', '');
-                    displayRankings(period, result);
+                    displayCategoryHeatmap(period, result);
                 }
             }); 
         }
         
-        function getCategoryIcon(categoryName) {
-            const iconClass = "h-5 w-5 mr-3 text-pink-300 flex-shrink-0";
-            switch (true) {
-                case /Tシャツ/.test(categoryName):
-                    return `<span class="font-bold text-lg ${iconClass}" style="line-height: 1.25rem; width: 1.25rem; text-align: center;">T</span>`;
-                case /シャツ\/半袖/.test(categoryName):
-                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.5,6.5H15V4.5a2,2,0,0,0-2-2h-2a2,2,0,0,0-2,2V6.5H6.5a2,2,0,0,0-2,2v8a2,2,0,0,0,2,2h11a2,2,0,0,0,2-2v-8A2,2,0,0,0,17.5,6.5Zm-7-2a.5.5,0,0,1,.5-.5h2a.5.5,0,0,1,.5.5V6.5h-3Z"/></svg>`;
-                case /シャツ/.test(categoryName):
-                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m-4-12l-4 4v10h16V8l-4-4H12z" /></svg>`;
-                case /パンツ/.test(categoryName):
-                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 4v16m8-16v16M8 4h8m-8 16h8" /></svg>`;
-                case /ジャケット|アウター|コート|ジャン/.test(categoryName):
-                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16M4 12l8-8 8 8M4 12v8h16v-8" /></svg>`;
-                default:
-                    return `<svg class="${iconClass}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>`;
-            }
+        function getHeatmapColor(percentage) {
+            if (percentage === 0) return 'rgba(79, 70, 229, 0.1)'; // Near transparent for 0
+            // Maps 0-100% to a lightness value. Higher % = lower lightness (darker color)
+            // We use a non-linear scale (power of 0.5) to make lower percentages more visible
+            const lightness = 90 - (Math.pow(percentage, 0.6) * 5); 
+            // Using HSL: Hue (330=pink/magenta), Saturation (80%), Lightness (variable)
+            return `hsl(330, 80%, ${lightness}%)`;
         }
 
-        function displayRankings(period, result) {
-            const container = document.getElementById(`${period}-category-rankings`);
+        function displayCategoryHeatmap(period, result) {
+            const container = document.getElementById(`${period}-category-heatmap`);
             if (!container) return;
             container.innerHTML = '';
-            const sortedKeys = Object.keys(result[period]).sort((a,b) => new Date(b) - new Date(a));
-            if (sortedKeys.length === 0) {
-                container.innerHTML = `<div class="text-center text-gray-400 py-4 col-span-full">表示するデータがありません。</div>`;
+
+            const periodData = result[period];
+            
+            let sortedPeriods;
+            if (period === 'daily') {
+                // For daily, sort from newest to oldest
+                sortedPeriods = Object.keys(periodData).sort((a,b) => new Date(b) - new Date(a));
+            } else {
+                // For weekly and monthly, sort from oldest to newest
+                sortedPeriods = Object.keys(periodData).sort((a,b) => new Date(a) - new Date(b));
+            }
+
+            if (sortedPeriods.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-400 py-4">表示するデータがありません。</p>`;
                 return;
             }
-            sortedKeys.forEach(key => {
-                const stats = result[period][key];
-                if(!stats.categoryCounts) return;
-                const ranked = Object.entries(stats.categoryCounts).sort(([,a],[,b]) => b-a).slice(0, 5);
-                if(ranked.length === 0) return;
 
-                let displayKey = key;
+            const allCategories = new Set();
+            sortedPeriods.forEach(p => {
+                Object.keys(periodData[p].categoryCounts).forEach(cat => allCategories.add(cat));
+            });
+            
+            // Custom sorting: "その他/小物" and "その他" at the bottom
+            const categoriesArray = [...allCategories];
+            const otherCategory = 'その他';
+            const otherSubCategory = 'その他/小物';
+
+            const sortedCategories = categoriesArray
+                .filter(cat => cat !== otherCategory && cat !== otherSubCategory)
+                .sort();
+            
+            if (categoriesArray.includes(otherSubCategory)) {
+                sortedCategories.push(otherSubCategory);
+            }
+            if (categoriesArray.includes(otherCategory)) {
+                sortedCategories.push(otherCategory);
+            }
+
+
+            let tableHTML = '<table class="heatmap-table"><thead><tr><th>カテゴリ</th>';
+            sortedPeriods.forEach(p => {
+                let displayKey = p;
                 if (period === 'weekly') {
-                    const startDate = new Date(key.replace(/-/g, '/'));
+                    const startDate = new Date(p.replace(/-/g, '/'));
                     const endDate = new Date(startDate);
                     endDate.setDate(startDate.getDate() + 6);
-                    displayKey = `${key.replace(/-/g, '/')} ～ ${(endDate.getMonth() + 1)}/${endDate.getDate()}`;
+                    displayKey = `${startDate.getMonth() + 1}/${startDate.getDate()}~`;
                 } else if (period === 'monthly') {
-                    displayKey = `${key.replace('/', '年')}月`;
+                     displayKey = `${p.split('/')[1]}月`;
+                } else {
+                     displayKey = `${p.split('/')[1]}/${p.split('/')[2]}`;
                 }
-
-                const card = document.createElement('div');
-                card.className = 'bg-indigo-800 p-6 rounded-2xl shadow-lg';
-                
-                const title = document.createElement('h4');
-                title.className = 'font-semibold text-lg mb-4 text-white';
-                title.textContent = `${displayKey} カテゴリ別購買数`;
-                card.appendChild(title);
-
-                const contentWrapper = document.createElement('div');
-                contentWrapper.className = 'space-y-4';
-                
-                const maxValue = Math.max(...ranked.map(item => item[1]));
-                const colors = ['#ec4899', '#f472b6', '#f9a8d4', '#fbcfe8', '#fce7f3'];
-
-                ranked.forEach(([name, value], index) => {
-                    const percentage = stats.purchases > 0 ? ((value / stats.purchases) * 100).toFixed(1) : '0.0';
-                    const barWidth = maxValue > 0 ? (value / maxValue) * 100 : 0;
-                    
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'grid grid-cols-12 gap-4 items-center text-sm';
-                    
-                    const nameDiv = document.createElement('div');
-                    nameDiv.className = 'col-span-4 flex items-center';
-                    nameDiv.innerHTML = `${getCategoryIcon(name)}<span class="font-semibold text-indigo-200 truncate">${name}</span>`;
-
-                    const barDiv = document.createElement('div');
-                    barDiv.className = 'col-span-8 flex items-center';
-
-                    const barContainer = document.createElement('div');
-                    barContainer.className = 'flex-1 bg-indigo-700/50 rounded-full h-4';
-                    
-                    const bar = document.createElement('div');
-                    bar.className = 'h-4 rounded-full';
-                    bar.style.width = `${barWidth}%`;
-                    bar.style.backgroundColor = colors[index % colors.length];
-
-                    const valueSpan = document.createElement('span');
-                    valueSpan.className = 'ml-3 w-28 text-left text-indigo-200';
-                    valueSpan.textContent = `${value}点 (${percentage}%)`;
-
-                    barContainer.appendChild(bar);
-                    barDiv.appendChild(barContainer);
-                    barDiv.appendChild(valueSpan);
-
-                    itemDiv.appendChild(nameDiv);
-                    itemDiv.appendChild(barDiv);
-                    contentWrapper.appendChild(itemDiv);
-                });
-                
-                card.appendChild(contentWrapper);
-                container.appendChild(card);
+                tableHTML += `<th>${displayKey}</th>`;
             });
+            tableHTML += '</tr></thead><tbody>';
+
+            sortedCategories.forEach(cat => {
+                tableHTML += `<tr><th>${cat}</th>`;
+                sortedPeriods.forEach(p => {
+                    const count = periodData[p].categoryCounts[cat] || 0;
+                    const total = periodData[p].purchases;
+                    const percentage = total > 0 ? (count / total) * 100 : 0;
+                    const color = getHeatmapColor(percentage);
+                    tableHTML += `<td style="background-color: ${color};">${percentage.toFixed(1)}%</td>`;
+                });
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table>';
+            container.innerHTML = tableHTML;
         }
         
         function saveSettings() {
@@ -1108,52 +1107,40 @@ ${dataSummary}
         generateReportBtn.addEventListener('click', generateAIReport);
 
         // --- Login Logic ---
-        loginBtn.addEventListener('click', () => {
-            const userIdInputVal = userIdInput.value;
-            const password = passwordLoginInput.value;
+        loginBtn.addEventListener('click', async () => {
+            loginErrorMessage.textContent = '接続中...';
+            try {
+                const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+                    apiKey: "YOUR_API_KEY", // フォールバック用の値を設定
+                    authDomain: "YOUR_AUTH_DOMAIN",
+                    projectId: "YOUR_PROJECT_ID",
+                    storageBucket: "YOUR_STORAGE_BUCKET",
+                    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+                    appId: "YOUR_APP_ID"
+                };
 
-            if (users[userIdInputVal] && users[userIdInputVal] === password) {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                userId = auth.currentUser.uid;
                 loginPage.classList.add('hidden');
                 appContainer.classList.remove('hidden');
                 
-                // Firebase Initialization
-                try {
-                    const firebaseConfig = {
-                        apiKey: "AIzaSyAcVcWgUBQHw33bLCSWzqzIXOvs0szKMvo",
-                        authDomain: "vintage-analyzer-f4111.firebaseapp.com",
-                        projectId: "vintage-analyzer-f4111",
-                        storageBucket: "vintage-analyzer-f4111.appspot.com",
-                        messagingSenderId: "207991861674",
-                        appId: "1:207991861674:web:a32f87d4ccb88437f7bbd3",
-                        measurementId: "G-13BZQ8VXCQ"
-                    };
-                    const app = initializeApp(firebaseConfig);
-                    db = getFirestore(app);
-                    auth = getAuth(app);
-                } catch(e) {
-                    console.error("Firebase initialization failed:", e);
-                    loginErrorMessage.textContent = 'Firebaseの接続情報の初期化に失敗しました。';
-                    return;
-                }
-                
-                signInAnonymously(auth).then((userCredential) => {
-                    userId = userCredential.user.uid;
-                    loadSavedFiles();
-                    loadSettings();
-                    showPage('analytic-page');
-                    // 初期タブ表示
-                    if (analysisResultCache) {
-                        showTab('tab-daily');
-                    } else {
-                        updateSummaryDashboard({}, "データをインポートしてください");
-                    }
-                }).catch((error) => {
-                    console.error("Anonymous sign-in failed:", error);
-                    loginErrorMessage.textContent = '認証サーバーへの接続に失敗しました。';
-                });
+                loadSavedFiles();
+                loadSettings();
+                showPage('analytic-page');
+                updateSummaryDashboard({}, "データをインポートしてください");
 
-            } else {
-                loginErrorMessage.textContent = 'ユーザーIDまたはパスワードが正しくありません。';
+            } catch (error) {
+                console.error("Authentication or Initialization failed:", error);
+                loginErrorMessage.textContent = '認証または初期化に失敗しました。';
             }
         });
         
